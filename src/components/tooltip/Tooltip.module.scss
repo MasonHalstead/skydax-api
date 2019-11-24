@@ -1,0 +1,22 @@
+@import 'scss/variables';
+
+.tooltip {
+  display: none;
+  z-index:2;
+  top: 4px;
+  right: 40px;
+  position: absolute;
+  background: $tooltip_background;
+  color: $tooltip_font;
+  line-height: 1;
+  width: max-content;
+  border-radius: $tooltip_border_radius;
+  padding: 5px 12px 6px 12px;
+  font-size: $tooltip_font_size;
+  box-shadow: $box_shadow;
+  p {
+    margin: 0px;
+    font-weight: 400;
+    line-height: 1;
+  }
+}

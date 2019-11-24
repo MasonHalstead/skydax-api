@@ -1,0 +1,83 @@
+@import 'scss/variables';
+
+.table {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  width: 100%;
+}
+.tableStatic {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.rows {
+  position: relative;
+  flex-grow: 1;
+}
+.scroll {
+  position: absolute !important;
+  border-bottom: 1px solid $table_border;
+}
+.header {
+  display: flex;
+  align-items: stretch;
+  font-weight: 400;
+  color: $table_font;
+  font-size: $table_font_size;
+}
+.headerCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $table_header_background;
+  line-height: 1;
+  border: 1px solid $table_border;
+  border-right: none;
+  span {
+    margin-left: 10px;
+  }
+}
+.headerSort {
+  cursor: pointer;
+}
+.headerSort:hover {
+  color: $table_header_hover;
+}
+.tableRowWrapper {
+  flex-grow: 1;
+}
+.tableRow {
+  display: flex;
+  align-items: stretch;
+  border-top: none;
+}
+.tableCell {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  background: $table_background;
+  border: 1px solid $table_border;
+  border-right: none;
+  border-top: none;
+  min-width: 0;
+}
+.tableFooter {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+.header > .headerCell:last-child,
+.tableRow > .tableCell:last-child {
+  border-right: 1px solid $table_border;
+}
+.tableRow:hover .tableCell {
+  background: $table_hover !important;
+}
+.table .tableRow:last-child .tableCell {
+  border-bottom: none;
+}
+.tableStatic .tableRow:last-child .tableCell {
+  border-bottom: 1px solid $table_border;
+}

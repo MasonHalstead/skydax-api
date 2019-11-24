@@ -1,0 +1,50 @@
+@import 'scss/variables';
+
+.container {
+    overflow: hidden;
+    background: transparent;
+    margin: 0px;
+}
+.label {
+    font-weight: 400;
+    color: $textarea_font;
+    font-size: $textarea_font_size;
+    margin: 0px 0px 4px 0px;
+  }
+  .textContainer {
+    display: flex;
+    align-items: stretch;
+    cursor: pointer;
+    justify-content: center;  
+    border-radius: $textarea_border_radius;
+    border: 1px solid $textarea_border;
+    min-height: $textarea_height;
+  }
+  .textFocus {
+    border: 1px solid lighten($textarea_hover,15%);
+  }
+  .textDisabled {
+    background: $textarea_disabled;
+  }
+  .textBulk {
+    border: none;
+    border-radius: 0px;
+  }
+  .textarea {
+    background: transparent;
+    cursor: text;
+    border: none;
+    padding: 5px;
+    flex-grow: 1;
+    outline: none;
+    color: $textarea_font;
+    font-size: $textarea_font_size;
+    min-height: $textarea_height - 4;
+    align-self: stretch;
+    flex-grow: 1;
+    min-height: 40px;
+  }
+  .textarea::placeholder {
+    font-weight: 300;
+    color: $textarea_placeholder;
+  }

@@ -1,0 +1,198 @@
+@import 'scss/variables';
+
+.container {
+    overflow: hidden;
+    background: transparent;
+    margin: 0px;
+}
+.inputMultiContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 2px 0px;
+  align-items: center;
+}
+.inputListContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+  .badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    border-radius: 10px;
+    height: 16px;
+    width: 16px;
+    font-size: 11px;
+    background: $input_background;
+    border: 1px solid lighten($input_hover,15%);
+    color: $input_hover;
+  }
+  .placeholder {
+    color: $input_placeholder;
+  }
+  p {
+    margin: 0px;
+    margin-left: 5px;
+  }
+}
+.label {
+  font-weight: 400;
+  color: $input_font;
+  font-size: $input_font_size;
+  margin: 0px 0px 4px 0px;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  justify-content: center;  
+  border-radius: $input_border_radius;
+  border: 1px solid $input_border;
+  min-height: $input_height;
+}
+.inputContainer:hover .leftIcon,
+.inputContainer:hover .rightIcon {
+  color: $input_hover
+}
+.inputIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
+  flex-grow: 1;
+}
+.inputIconList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
+  flex-grow: 1;
+  .badge {
+    position: absolute;
+    top: -7px;
+    left: -11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    border-radius: 10px;
+    height: 16px;
+    width: 16px;
+    font-size: 11px;
+    background: $input_background;
+    border: 1px solid lighten($input_hover,15%);
+    color: $input_hover;
+  }
+}
+.inputFake {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
+  flex-grow: 1;
+  p {
+    width: 100%;
+    margin: 0px;
+  }
+  .placeholder {
+    color: $input_placeholder;
+  }
+}
+.inputFocus {
+  border: 1px solid lighten($input_hover,15%);
+}
+.inputDisabled {
+  background: $input_disabled;
+}
+.inputBulk {
+  border: none;
+  border-radius: 0px;
+}
+.input {
+    background: transparent;
+    cursor: text;
+    border: none;
+    padding: 0px 5px;
+    flex-grow: 1;
+    outline: none;
+    color: $input_font;
+    font-size: $input_font_size;
+    min-height: $input_height - 4;
+    align-self: stretch;
+  }
+  .input[type='number']::-webkit-inner-spin-button,
+  .input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .input::placeholder {
+    font-weight: 300;
+    color: $input_placeholder;
+  }
+  .leftIcon {
+    padding-left: 5px;
+    border-top-left-radius: $input_border_radius;
+    border-bottom-left-radius: $input_border_radius;
+    :hover {
+      color: $input_hover
+    }
+  }
+  .rightIcon {
+    padding-right: 5px;
+    border-top-right-radius: $input_border_radius;
+    border-bottom-right-radius: $input_border_radius;
+    :hover {
+      color: $input_hover
+    }
+  }
+
+  .leftIcon,
+  .rightIcon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    min-width: 24px;
+    max-width: 24px;
+    color: $input_font;
+    font-size: 13px;
+  }
+  .keyword {
+    display: flex;
+    background: $input_background;
+    border-radius: $input_border_radius;
+    border: 1px solid lighten($input_hover,15%);
+    width: max-content;
+    height: $input_height - 10;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    .remove {
+      color: $input_hover;
+      height: $input_height - 10;
+      padding: 0px 5px;
+      font-size: 12px;
+      border-right: 1px solid lighten($input_hover,15%);
+      &:hover {
+        background: darken($input_background, 10%);
+      }
+    }
+    .text {
+      margin: 0px;
+      padding: 0px 5px;
+      line-height: $input_height - 10;
+      color: $input_hover;
+    }
+  }

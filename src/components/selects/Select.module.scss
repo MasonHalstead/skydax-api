@@ -1,0 +1,76 @@
+@import 'scss/variables';
+
+.selectScroll {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    width: auto !important;
+    margin-top: -1px;
+    background: $select_background;
+    border-radius: $select_border_radius;
+    border: 1px solid $select_border;
+    z-index: 1;
+    box-shadow: $box_shadow;
+}
+.selectBulk {
+    margin-top: 0;
+    left: 0;
+    border-radius: 0px;
+}
+  .selectTitle {
+      color: $select_font;
+    font-weight: 400;
+    padding: 6px;
+    margin: 0px;
+  }
+  .selectWrapper {
+    min-width: 50px;
+    color: $select_font;
+    font-size: $select_font_size;
+    padding: 3px 0px;
+    .item {
+      margin: 0px;
+      padding: 6px 10px;
+      cursor: pointer;
+      overflow: hidden;
+      text-align: left;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+      &:hover {
+            background: $select_hover;
+        }
+    }
+    .empty {
+      margin: 0px;
+      padding: 6px 10px;
+      overflow: hidden;
+      text-align: center;
+      text-overflow: ellipsis;
+      word-break: break-all;
+      white-space: nowrap;
+    }
+    .itemSelected {
+        background: darken($select_hover, 5%);
+    }
+  }
+  
+  .extendedBreak {
+    margin: 3px 0px;
+    border-top: 1px solid $select_border;
+  }
+  .extended {
+    .item {
+        cursor: pointer;
+        padding: 6px 10px;
+        margin: 0px;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+        &:hover {
+            background: $select_hover;
+        }
+    }
+  }

@@ -1,0 +1,31 @@
+@import 'scss/variables';
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 10px 16px;
+    font-size: $button_font;
+    border-radius: $button_border_radius;
+    outline: none;
+    box-shadow: $box_shadow;
+    .leftIcon {
+        margin-right: 8px;
+    }
+    .rightIcon {
+        margin-left: 8px;
+    }
+}
+.primary {
+    color: $button_primary_font;
+    background: $button_primary_color;
+    background: linear-gradient(90deg, lighten($button_primary_color, 5%) 0%, $button_primary_color 100%);
+    border: 1px solid $button_primary_color;
+    &:hover {
+        background: darken($button_primary_color, 5%);
+    }
+    &:active {
+        background: darken($button_primary_color, 10%);
+    }
+}

@@ -1,0 +1,90 @@
+$disconnected-color: #ff4f4f;
+$connected-color: lighten(#70a800, 10%);
+
+.navigation {
+    display: flex;
+    min-height: 50px;
+    max-height: 50px;
+    align-items: center;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  }
+  .logo {
+    margin-left: 5px;
+    margin-right: 30px;
+    height: 32px;
+    width: auto;
+  }
+  .link {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    padding: 0px 30px;
+    height: 100%;
+  }
+  .flex {
+    flex-grow: 1;
+    height: 100%;
+    margin-right: 10px;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    color: #fff;
+    font-size: 15px;
+    width: 50px;
+    height: 100%;
+    &:hover {
+        color: #bdc3d9;
+    }
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    border-left: 1px solid #3b4253;
+    color: #fff;
+    font-size: 15px;
+    width: 50px;
+    height: 100%;
+  }
+  .actions:hover [data-role='tooltip'],
+  .status:hover [data-role='tooltip'] {
+    display: block;
+  }
+.disconnected {
+    width: 10px;
+    height: 10px;
+    background: $disconnected-color;
+    border-radius: 50%;
+    margin: 0px;
+    box-shadow: 0 0 4px #1c1c17, 0 0 5px $disconnected-color;
+    transition: all 0.2s ease;
+  }
+  .missing {
+    width: 10px;
+    height: 10px;
+    background: #feb733;
+    border-radius: 50%;
+    margin: 0px;
+    box-shadow: 0 0 4px #1c1c17, 0 0 5px #feb733;
+    transition: all 0.2s ease;
+  }
+  .connected {
+    width: 10px;
+    height: 10px;
+    background: $connected-color;
+    border-radius: 50%;
+    margin: 0px;
+    box-shadow: 0 0 4px #1c1c17, 0 0 5px $connected-color;
+    transition: all 0.2s ease;
+  }
