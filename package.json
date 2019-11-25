@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "heroku:prod": "git push heroku master",
-    "deploy:prod": "env-cmd -f .env.prod react-scripts build && npm run heroku:prod"
+    "deploy:prod": "react-scripts build && npm run heroku:prod"
   },
   "eslintConfig": {
     "extends": "react-app"
