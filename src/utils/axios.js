@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { isObject } from 'utils/helpers';
 
-const { REACT_APP_HOST } = process.env;
+const { REACT_APP_HOST } = window.env;
 
 export function postPublic(url, data) {
   return axios({

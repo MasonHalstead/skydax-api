@@ -18,7 +18,7 @@ class ConnectedPrivateLayout extends PureComponent {
       <div className={cn.privateContainer}>
         <Navigation />
         <div className={cn.privateContent}>{children}</div>
-        <p className={cn.version}>v {process.env.REACT_APP_VERSION}</p>
+        <p className={cn.version}>v {window.env.REACT_APP_VERSION}</p>
         {loading && <Loading variant="dark" />}
       </div>
     );

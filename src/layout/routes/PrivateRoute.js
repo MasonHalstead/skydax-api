@@ -23,7 +23,6 @@ class PrivateRouteWrapper extends PureComponent {
       location,
       ...rest
     } = this.props;
-    console.log('private', privateUser, privateVerifiedUser);
     if (privateUser) {
       return (
         <Route
