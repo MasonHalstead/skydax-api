@@ -1,0 +1,55 @@
+@import 'scss/index';
+
+.page {
+    display: flex;
+    align-items: stretch;
+    padding: 20px;
+    padding-bottom: 0px;
+    flex-grow: 1;
+  }
+.activityBlock {
+    display: flex;
+    width: calc(25% - 10px);
+    background: #2e3440;
+    color: #fff;
+    margin-left: 10px;
+    border-bottom: 1px solid #3b4253;
+}
+.chartBlock {
+    display: flex;
+    width: calc(50% - 10px);
+    background: #2e3440;
+    color: #fff;
+    margin: 0px 10px;
+    border-bottom: 1px solid #3b4253;
+}
+.positionBlock {
+    display: flex;
+    width: calc(25% - 10px);
+    background: #2e3440;
+    color: #fff;
+    margin-right: 10px;
+    border-bottom: 1px solid #3b4253;
+}
+.panelLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    align-self: stretch;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+    margin-right: 10px;
+}
+.panelRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    align-self: stretch;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+    margin-left: 10px;
+}

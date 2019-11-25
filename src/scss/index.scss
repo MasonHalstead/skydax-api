@@ -37,6 +37,8 @@ a {
   white-space: nowrap;
 }
 .cell {
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 0px 5px;
 }

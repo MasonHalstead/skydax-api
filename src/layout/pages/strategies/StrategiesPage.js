@@ -20,6 +20,7 @@ import cn from './StrategiesPage.module.scss';
 
 export class StrategiesPage extends Component {
   static propTypes = {
+    strategies: PropTypes.array,
     getStrategies: PropTypes.func,
     setLoading: PropTypes.func,
   };
@@ -72,13 +73,13 @@ export class StrategiesPage extends Component {
       {
         title: 'Unrealised PNL',
         show: true,
-        min_width: '100px',
+        min_width: '150px',
         uuid: uuid.v1(),
       },
       {
         title: 'Liquidation',
         show: true,
-        min_width: '100px',
+        min_width: '150px',
         uuid: uuid.v1(),
       },
     ],

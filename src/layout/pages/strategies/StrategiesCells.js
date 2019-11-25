@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 import cn from './StrategiesPage.module.scss';
 
 export const ExchangeCell = ({ row }) => (
   <div className={cn.cell}>
-    <p className={cn.overflow}>{row.exchange}</p>
+    <Link to={row.link} className={cn.exchangeCell}>
+      {row.exchange}
+    </Link>
   </div>
 );
 ExchangeCell.propTypes = {
@@ -14,7 +17,9 @@ ExchangeCell.propTypes = {
 
 export const PairCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.pair}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.pair}
+    </Link>
   </div>
 );
 PairCell.propTypes = {
@@ -23,7 +28,9 @@ PairCell.propTypes = {
 
 export const QuantityCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.quantity}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.quantity}
+    </Link>
   </div>
 );
 QuantityCell.propTypes = {
@@ -32,7 +39,10 @@ QuantityCell.propTypes = {
 
 export const PositionCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{`$${row.position_price.toFixed(2)}`}</p>
+    <Link
+      to={row.link}
+      className={cn.strategyCell}
+    >{`$${row.position_price.toFixed(2)}`}</Link>
   </div>
 );
 PositionCell.propTypes = {
@@ -41,7 +51,9 @@ PositionCell.propTypes = {
 
 export const LastPriceCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.last_price}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.last_price}
+    </Link>
   </div>
 );
 LastPriceCell.propTypes = {
@@ -50,7 +62,9 @@ LastPriceCell.propTypes = {
 
 export const EntryPriceCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.entry_price}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.entry_price}
+    </Link>
   </div>
 );
 EntryPriceCell.propTypes = {
@@ -59,7 +73,9 @@ EntryPriceCell.propTypes = {
 
 export const BreakEvenCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.break_even}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.break_even}
+    </Link>
   </div>
 );
 BreakEvenCell.propTypes = {
@@ -68,7 +84,9 @@ BreakEvenCell.propTypes = {
 
 export const UnrealisedPnlCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.unrealised_pnl}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.unrealised_pnl}
+    </Link>
   </div>
 );
 UnrealisedPnlCell.propTypes = {
@@ -77,7 +95,9 @@ UnrealisedPnlCell.propTypes = {
 
 export const LiquidationCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <p className={cn.overflow}>{row.liquidation}</p>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.liquidation}
+    </Link>
   </div>
 );
 LiquidationCell.propTypes = {

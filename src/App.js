@@ -34,6 +34,11 @@ class ConnectedApp extends PureComponent {
               path={routes.STRATEGIES}
               component={pages.StrategiesPage}
             />
+            <PrivateRoute
+              exact
+              path={routes.BITMEX_STRATEGY}
+              component={pages.BitmexPage}
+            />
             <Route component={pages.ErrorPage} />
           </Switch>
         </Suspense>

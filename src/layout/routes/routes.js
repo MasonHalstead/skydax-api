@@ -4,7 +4,7 @@ export const routes = {
   DOCS: '/docs',
   VALIDATE: '/validate',
   BINANCE: '/binance',
-  BITMEX: '/bitmex',
+  BITMEX_STRATEGY: '/strategies/bitmex/:pair',
   PORTFOLIO: '/portfolio',
   STRATEGIES: '/strategies',
   FUNDS: '/funds',
