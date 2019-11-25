@@ -18,7 +18,7 @@ class ConnectedApp extends PureComponent {
       <Router basename="/">
         <Suspense fallback={<Loading variant="dark" />}>
           <Switch>
-            <Redirect exact from={routes.ROOT} to={routes.VALIDATION} />
+            <Redirect exact from={routes.ROOT} to={routes.VALIDATE} />
             <PublicRoute
               exact
               path={routes.LOGIN}
@@ -26,13 +26,13 @@ class ConnectedApp extends PureComponent {
             />
             <ValidateRoute
               exact
-              path={routes.VALIDATION}
+              path={routes.VALIDATE}
               component={pages.ValidatePage}
             />
             <PrivateRoute
               exact
-              path={routes.SANDBOX}
-              component={pages.SandboxPage}
+              path={routes.STRATEGIES}
+              component={pages.StrategiesPage}
             />
             <Route component={pages.ErrorPage} />
           </Switch>

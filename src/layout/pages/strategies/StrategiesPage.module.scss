@@ -1,0 +1,47 @@
+@import 'scss/index';
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.strategyBlock {
+    display: flex;
+    height: 200px;
+    width: 100%;
+}
+.panelLeft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    align-self: stretch;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+    margin-right: 10px;
+}
+.panelRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(50% - 10px);
+    align-self: stretch;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+    margin-left: 10px;
+}
+.strategyTable {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 20px;
+    background: #2e3440;
+    color: #fff;
+    border-bottom: 1px solid #3b4253;
+}

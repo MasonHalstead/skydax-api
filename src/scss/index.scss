@@ -30,3 +30,17 @@ a {
     color: #bdc3d9;
   }
 }
+.overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}
+.cell {
+  width: 100%;
+  padding: 0px 5px;
+}
+.center {
+  text-align: center;
+  justify-content: center;
+}

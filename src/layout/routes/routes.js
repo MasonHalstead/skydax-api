@@ -1,12 +1,12 @@
 export const routes = {
   ROOT: '/',
   LOGIN: '/login',
-  VALIDATION: '/validation',
-  FIREBASE: '/firebase',
-  OANDA: '/oanda',
-  API: '/api',
+  DOCS: '/docs',
+  VALIDATE: '/validate',
   BINANCE: '/binance',
-  BITMEX: '/bitmex/:instrument',
-  FOREX_BASE: '/forex/:base',
+  BITMEX: '/bitmex',
+  PORTFOLIO: '/portfolio',
+  STRATEGIES: '/strategies',
+  FUNDS: '/funds',
   SANDBOX: '/sandbox',
 };

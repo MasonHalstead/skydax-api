@@ -19,8 +19,8 @@ Tooltip.defaultProps = {
 };
 Tooltip.propTypes = {
   title: PropTypes.string,
-  top: PropTypes.string,
-  right: PropTypes.string,
-  left: PropTypes.string,
-  bottom: PropTypes.string,
+  top: PropTypes.any,
+  right: PropTypes.any,
+  left: PropTypes.any,
+  bottom: PropTypes.any,
 };

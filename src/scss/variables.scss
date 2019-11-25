@@ -11,6 +11,8 @@ $color_7: #2e3440;
 $color_20: #428bca;
 $color_21: #e1edf7;
 $color_22: #364059;
+$color_23: #2e3440;
+$color_24:  #3b4253;
 
 // --------- Theme --------- //
 
@@ -82,11 +84,11 @@ $button_font: $font_size_1;
 
 // --------- Table --------- //
 
-$table_border: $color_3;
-$table_header_background: $color_6;
-$table_background: $color_5;
-$table_hover: $color_21;
-$table_font: $color_1;
+$table_border: $color_24;
+$table_header_background: $color_23;
+$table_background: $color_23;
+$table_hover: darken($color_23, 5%);
+$table_font: $color_5;
 $table_header_hover: $color_20;
 
 $table_font_size: $font_size_1;

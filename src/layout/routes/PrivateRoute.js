@@ -31,7 +31,7 @@ class PrivateRouteWrapper extends PureComponent {
           render={props => (
             <Redirect
               to={{
-                pathname: routes.VALIDATION,
+                pathname: routes.VALIDATE,
                 state: {
                   from: props.location,
                 },

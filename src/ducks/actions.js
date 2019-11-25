@@ -22,3 +22,12 @@ export const setLoading = loading => ({
   type: constants.SET_LOADING,
   payload: loading,
 });
+
+// ------ STRATEGIES ACTIONS ------ //
+export const setStrategies = strategies => ({
+  type: constants.SET_STRATEGIES,
+  payload: strategies,
+});
+export const clearStrategies = () => ({
+  type: constants.CLEAR_STRATEGIES,
+});

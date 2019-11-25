@@ -31,7 +31,7 @@ class ConnectedValidateRoute extends PureComponent {
           render={props => (
             <Redirect
               to={{
-                pathname: routes.SANDBOX,
+                pathname: routes.STRATEGIES,
                 state: {
                   from: props.location,
                 },

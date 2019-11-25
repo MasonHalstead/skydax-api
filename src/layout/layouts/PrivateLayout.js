@@ -8,17 +8,16 @@ import cn from './Layouts.module.scss';
 class ConnectedPrivateLayout extends PureComponent {
   static propTypes = {
     children: PropTypes.object,
-    location: PropTypes.object,
     loading: PropTypes.bool,
   };
 
   render() {
-    const { children, loading, location } = this.props;
+    const { children, loading } = this.props;
     return (
       <div className={cn.privateContainer}>
         <Navigation />
         <div className={cn.privateContent}>{children}</div>
-        <p className={cn.version}>v {window.env.REACT_APP_VERSION}</p>
+        <p className={cn.version}>v {process.env.REACT_APP_VERSION}</p>
         {loading && <Loading variant="dark" />}
       </div>
     );

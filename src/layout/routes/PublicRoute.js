@@ -31,7 +31,7 @@ class ConnectedPublicRoute extends PureComponent {
           render={props => (
             <Redirect
               to={{
-                pathname: routes.SANDBOX,
+                pathname: routes.STRATEGIES,
                 state: {
                   from: props.location,
                 },
@@ -49,7 +49,7 @@ class ConnectedPublicRoute extends PureComponent {
           render={props => (
             <Redirect
               to={{
-                pathname: routes.VALIDATION,
+                pathname: routes.VALIDATE,
                 state: {
                   from: props.location,
                 },
