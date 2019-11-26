@@ -13,8 +13,9 @@ import {
   LastPriceCell,
   EntryPriceCell,
   BreakEvenCell,
-  UnrealisedPnlCell,
+  LeverageCell,
   LiquidationCell,
+  ActionCell,
 } from './StrategiesCells';
 import cn from './StrategiesPage.module.scss';
 
@@ -47,6 +48,12 @@ export class StrategiesPage extends Component {
         uuid: uuid.v1(),
       },
       {
+        title: 'Leverage',
+        show: true,
+        min_width: '150px',
+        uuid: uuid.v1(),
+      },
+      {
         title: 'Satoshi',
         show: true,
         min_width: '150px',
@@ -71,15 +78,15 @@ export class StrategiesPage extends Component {
         uuid: uuid.v1(),
       },
       {
-        title: 'Unrealised PNL',
+        title: 'Liquidation',
         show: true,
         min_width: '150px',
         uuid: uuid.v1(),
       },
       {
-        title: 'Liquidation',
+        title: '',
         show: true,
-        min_width: '150px',
+        min_width: '40px',
         uuid: uuid.v1(),
       },
     ],
@@ -121,12 +128,13 @@ export class StrategiesPage extends Component {
               ExchangeCell,
               PairCell,
               QuantityCell,
+              LeverageCell,
               SatoshiCell,
               LastPriceCell,
               EntryPriceCell,
               BreakEvenCell,
-              UnrealisedPnlCell,
               LiquidationCell,
+              ActionCell,
             ]}
           />
         </div>

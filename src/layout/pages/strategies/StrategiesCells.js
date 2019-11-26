@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from './StrategiesPage.module.scss';
 
 export const ExchangeCell = ({ row }) => (
@@ -81,14 +82,14 @@ BreakEvenCell.propTypes = {
   row: PropTypes.object,
 };
 
-export const UnrealisedPnlCell = ({ row }) => (
+export const LeverageCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
     <Link to={row.link} className={cn.strategyCell}>
-      {row.unrealised_pnl}
+      {row.leverage}
     </Link>
   </div>
 );
-UnrealisedPnlCell.propTypes = {
+LeverageCell.propTypes = {
   row: PropTypes.object,
 };
 
@@ -100,5 +101,16 @@ export const LiquidationCell = ({ row }) => (
   </div>
 );
 LiquidationCell.propTypes = {
+  row: PropTypes.object,
+};
+
+export const ActionCell = ({ row }) => (
+  <div className={classNames(cn.cell, cn.center)}>
+    <Link to={row.link} className={cn.strategyCell}>
+      <FontAwesomeIcon icon="external-link-alt" />
+    </Link>
+  </div>
+);
+ActionCell.propTypes = {
   row: PropTypes.object,
 };
