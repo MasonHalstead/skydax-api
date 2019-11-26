@@ -13,6 +13,12 @@ export const logoutUser = () => ({
   type: constants.LOGOUT_USER,
 });
 
+// ------ MODALS ACTIONS ------ //
+export const setModal = modal => ({
+  type: constants.SET_MODAL,
+  payload: modal,
+});
+
 // ------ SETTINGS ACTIONS ------ //
 export const setErrorMessage = message => ({
   type: constants.SET_ERROR_MESSAGE,

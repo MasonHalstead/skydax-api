@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Tooltip } from 'components/tooltip/Tooltip';
+import { handleApiError as handleApiErrorOperator } from 'ducks/operators/settings';
 import { getBitmexStrategy as getBitmexStrategyOperator } from 'ducks/operators/bitmex';
 import { setLoading as setLoadingAction } from 'ducks/actions';
 import cn from './BitmexPage.module.scss';
@@ -9,6 +10,7 @@ import cn from './BitmexPage.module.scss';
 export class BitmexPage extends Component {
   static propTypes = {
     getBitmexStrategy: PropTypes.func,
+    handleApiError: PropTypes.func,
     setLoading: PropTypes.func,
     strategy: PropTypes.object,
     wallet: PropTypes.object,
@@ -23,13 +25,18 @@ export class BitmexPage extends Component {
   };
 
   handleInitialData = async () => {
-    const { setLoading, getBitmexStrategy, location } = this.props;
+    const {
+      setLoading,
+      handleApiError,
+      getBitmexStrategy,
+      location,
+    } = this.props;
     const [, , , pair] = location.pathname.split('/');
     setLoading(true);
     try {
       await getBitmexStrategy(pair);
-    } catch {
-      console.log('Bitmex Strategy Error');
+    } catch (err) {
+      handleApiError(err, pair);
     }
     setLoading(false);
   };
@@ -146,6 +153,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setLoading: setLoadingAction,
+  handleApiError: handleApiErrorOperator,
   getBitmexStrategy: getBitmexStrategyOperator,
 };
 

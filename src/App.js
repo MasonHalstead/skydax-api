@@ -11,8 +11,26 @@ import { routes } from 'layout/routes/routes';
 import { PublicRoute } from 'layout/routes/PublicRoute';
 import { ValidateRoute } from 'layout/routes/ValidateRoute';
 import { PrivateRoute } from 'layout/routes/PrivateRoute';
+import * as Sentry from '@sentry/browser';
 import * as pages from 'layout/pages/async';
 class ConnectedApp extends PureComponent {
+  componentDidMount() {
+    const {
+      REACT_APP_ENV,
+      REACT_APP_SENTRY_DSN,
+      REACT_APP_VERSION,
+    } = window.env;
+
+    if (REACT_APP_ENV === 'development') {
+      return;
+    }
+    Sentry.init({
+      dsn: REACT_APP_SENTRY_DSN,
+      release: `skydax@${REACT_APP_VERSION}`,
+      environment: REACT_APP_ENV,
+    });
+  }
+
   render() {
     return (
       <Router basename="/">

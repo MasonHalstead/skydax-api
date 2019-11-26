@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { handleApiError as handleApiErrorOperator } from 'ducks/operators/settings';
 import { getStrategies as getStrategiesOperator } from 'ducks/operators/strategies';
 import { setLoading as setLoadingAction } from 'ducks/actions';
 import { Table } from 'components/table/Table';
@@ -22,6 +23,7 @@ import cn from './StrategiesPage.module.scss';
 export class StrategiesPage extends Component {
   static propTypes = {
     strategies: PropTypes.array,
+    handleApiError: PropTypes.func,
     getStrategies: PropTypes.func,
     setLoading: PropTypes.func,
   };
@@ -97,12 +99,12 @@ export class StrategiesPage extends Component {
   };
 
   handleInitialData = async () => {
-    const { setLoading, getStrategies } = this.props;
+    const { setLoading, getStrategies, handleApiError } = this.props;
     setLoading(true);
     try {
       await getStrategies();
-    } catch {
-      console.log('Strategies Error');
+    } catch (err) {
+      handleApiError(err);
     }
     setLoading(false);
   };
@@ -149,6 +151,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setLoading: setLoadingAction,
+  handleApiError: handleApiErrorOperator,
   getStrategies: getStrategiesOperator,
 };
 
