@@ -31,3 +31,30 @@ export const setStrategies = strategies => ({
 export const clearStrategies = () => ({
   type: constants.CLEAR_STRATEGIES,
 });
+
+// ------ STRATEGY ACTIONS ------ //
+export const setStrategy = strategy => ({
+  type: constants.SET_STRATEGY,
+  payload: strategy,
+});
+export const clearStrategy = () => ({
+  type: constants.CLEAR_STRATEGY,
+});
+
+// ------ WALLET ACTIONS ------ //
+export const setWallet = wallet => ({
+  type: constants.SET_WALLET,
+  payload: wallet,
+});
+export const clearWallet = () => ({
+  type: constants.CLEAR_WALLET,
+});
+
+// ------ FUNDING ACTIONS ------ //
+export const setFunding = funding => ({
+  type: constants.SET_FUNDING,
+  payload: funding,
+});
+export const clearFunding = () => ({
+  type: constants.CLEAR_FUNDING,
+});

@@ -12,6 +12,8 @@ export class Input extends Component {
     left_icon: PropTypes.any,
     right_icon: PropTypes.any,
     placeholder: PropTypes.string,
+    dropdown: PropTypes.bool,
+    dropdown_focus: PropTypes.bool,
     type: PropTypes.string,
     disabled: PropTypes.bool,
     value: PropTypes.any,
@@ -19,8 +21,10 @@ export class Input extends Component {
     margin: PropTypes.string,
     background: PropTypes.string,
     width: PropTypes.string,
+    select_focus: PropTypes.bool,
     handleOnKeyDown: PropTypes.func,
     handleClose: PropTypes.func,
+    handleOnBlur: PropTypes.func,
     handleOnFocus: PropTypes.func,
     handleToggle: PropTypes.func,
     handleOnChange: PropTypes.func,
@@ -30,6 +34,8 @@ export class Input extends Component {
     label: '',
     value: '',
     placeholder: '',
+    dropdown: false,
+    dropdown_focus: false,
     disabled: false,
     left_icon: false,
     right_icon: false,
@@ -38,8 +44,10 @@ export class Input extends Component {
     background: 'transparent',
     width: 'initial',
     bulk: false,
+    select_focus: false,
     component: InputBase,
     handleClose() {},
+    handleOnBlur() {},
     handleOnFocus() {},
     handleToggle() {},
     handleOnChange() {},
@@ -66,7 +74,9 @@ export class Input extends Component {
   };
 
   handleOnBlur = () => {
+    const { handleOnBlur } = this.props;
     this.setState({ focus: false });
+    handleOnBlur();
   };
 
   handleOnChange = e => {
@@ -91,12 +101,15 @@ export class Input extends Component {
       disabled,
       ...rest
     } = this.props;
-    const { focus } = this.state;
+    let { focus } = this.state;
+    const { dropdown, dropdown_focus } = this.props;
+    if (dropdown) {
+      focus = dropdown_focus;
+    }
     return (
       <div className={cn.container} style={{ margin, width, background }}>
         {label && <p className={cn.label}>{label}</p>}
         <div
-          data-role="input"
           className={classNames(cn.inputContainer, {
             [cn.inputBulk]: bulk,
             [cn.inputDisabled]: disabled,

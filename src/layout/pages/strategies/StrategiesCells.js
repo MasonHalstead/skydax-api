@@ -37,15 +37,14 @@ QuantityCell.propTypes = {
   row: PropTypes.object,
 };
 
-export const PositionCell = ({ row }) => (
+export const SatoshiCell = ({ row }) => (
   <div className={classNames(cn.cell, cn.center)}>
-    <Link
-      to={row.link}
-      className={cn.strategyCell}
-    >{`$${row.position_price.toFixed(2)}`}</Link>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.satoshi}
+    </Link>
   </div>
 );
-PositionCell.propTypes = {
+SatoshiCell.propTypes = {
   row: PropTypes.object,
 };
 

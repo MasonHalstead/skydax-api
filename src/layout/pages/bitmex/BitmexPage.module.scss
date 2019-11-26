@@ -12,6 +12,7 @@
     width: calc(25% - 10px);
     background: #2e3440;
     color: #fff;
+    min-height: 500px;
     margin-left: 10px;
     border-bottom: 1px solid #3b4253;
 }
@@ -25,31 +26,36 @@
 }
 .positionBlock {
     display: flex;
+    flex-direction: column;
     width: calc(25% - 10px);
-    background: #2e3440;
-    color: #fff;
     margin-right: 10px;
-    border-bottom: 1px solid #3b4253;
+    min-height: 500px;
+    .wallet {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 13px;
+        height: 220px;
+        background: #2e3440;
+        border-bottom: 1px solid #3b4253;
+    }
+    .position {
+        padding: 10px;
+        flex-grow: 1;
+        margin-top: 20px;
+        background: #2e3440;
+        border-bottom: 1px solid #3b4253;
+    }
+    .info {
+        display: flex;
+        justify-content: space-between;
+        p {
+            color: #fff;
+            font-weight: 400;
+            margin: 3px 0px;
+        }
+    }
 }
-.panelLeft {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(50% - 10px);
-    align-self: stretch;
-    background: #2e3440;
-    color: #fff;
-    border-bottom: 1px solid #3b4253;
-    margin-right: 10px;
-}
-.panelRight {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(50% - 10px);
-    align-self: stretch;
-    background: #2e3440;
-    color: #fff;
-    border-bottom: 1px solid #3b4253;
-    margin-left: 10px;
+.flex {
+    width: 100%;
+    flex-grow: 1;
 }

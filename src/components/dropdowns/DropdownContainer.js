@@ -24,17 +24,21 @@ export const DropdownContainer = ({
   handleOnMultiSelect,
 }) => {
   const [open, setToggle] = useState(false);
+  const [dropdown_focus, setFocus] = useState(false);
   const node = useRef();
   const handleOpen = () => {
     handleOnToggle(true);
+    setFocus(true);
     setToggle(true);
   };
   const handleClose = () => {
     handleOnToggle(false);
+    setFocus(false);
     setToggle(false);
   };
   const handleToggle = () => {
     handleOnToggle(!open);
+    setFocus(!dropdown_focus);
     setToggle(!open);
   };
   const handleSelect = item => {
@@ -43,6 +47,7 @@ export const DropdownContainer = ({
   };
   const handleChange = item => {
     handleOnChange(item);
+    setFocus(true);
     setToggle(true);
   };
   const handleClickOutside = e => {
@@ -72,12 +77,15 @@ export const DropdownContainer = ({
         {...input}
         bulk={bulk}
         disabled={disabled}
+        dropdown_focus={dropdown_focus}
         handleClose={handleClose}
         handleOnFocus={handleOpen}
+        handleOnBlur={handleClose}
         handleToggle={handleToggle}
         handleOnKeyDown={handleOnKeyDown}
         handleOnRemove={handleOnRemove}
         handleOnChange={handleChange}
+        dropdown
       />
       {tooltip && <Tooltip title={tooltip} />}
       {open && !disabled && (

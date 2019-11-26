@@ -8,17 +8,23 @@ export function normalizeWithUUID(array) {
 }
 
 export function normalizeBitmexStrategies(strategies) {
-  return strategies.map(strategy => ({
-    exchange: 'BitMex',
+  return strategies.map(strategy => normalizeBitmexStrategy(strategy));
+}
+
+export function normalizeBitmexStrategy(strategy) {
+  return {
+    exchange: 'BitMEX',
     link: `/strategies/bitmex/${strategy.symbol}`,
     pair: strategy.symbol,
-    break_even: strategy.breakEvenPrice,
-    position_price: strategy.currentQty * 0.00000001 * strategy.lastPrice,
-    quantity: strategy.currentQty,
-    last_price: strategy.lastPrice,
-    liquidation: strategy.liquidationPrice,
-    entry_price: strategy.avgEntryPrice,
-    unrealised_pnl: strategy.unrealisedPnl,
+    open: strategy.isOpen,
+    break_even: `$${strategy.breakEvenPrice.toFixed(2)}`,
+    satoshi: (strategy.currentQty / strategy.lastPrice).toFixed(8),
+    quantity: `$${strategy.currentQty.toFixed(2)}`,
+    last_price: `$${strategy.lastPrice.toFixed(2)}`,
+    liquidation: `$${strategy.liquidationPrice.toFixed(2)}`,
+    entry_price: `$${strategy.avgEntryPrice.toFixed(2)}`,
+    unrealised_pnl: `$${strategy.unrealisedPnl.toFixed(2)}`,
+    realised_pnl: `$${strategy.realisedPnl.toFixed(2)}`,
     uuid: uuid.v1(),
-  }));
+  };
 }
