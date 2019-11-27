@@ -11,7 +11,7 @@ export function normalizeBitmexStrategies(strategies) {
   return strategies.map(strategy => normalizeBitmexStrategy(strategy));
 }
 
-export function normalizeBitmexStrategy(strategy, candle) {
+export function normalizeBitmexStrategy(strategy) {
   const {
     currentQty,
     lastPrice,
@@ -19,11 +19,14 @@ export function normalizeBitmexStrategy(strategy, candle) {
     liquidationPrice,
     avgEntryPrice,
   } = strategy;
+
   let satoshi = null;
   let break_even = null;
-  let last_price = candle.close;
+  let last_price = null;
   let liquidation = null;
   let entry_price = null;
+  let quantity = null;
+
   if (currentQty && lastPrice) {
     satoshi = (currentQty / lastPrice).toFixed(8);
   }
@@ -39,6 +42,9 @@ export function normalizeBitmexStrategy(strategy, candle) {
   if (avgEntryPrice) {
     entry_price = `$${strategy.avgEntryPrice.toFixed(2)}`;
   }
+  if (currentQty) {
+    quantity = `$${strategy.currentQty.toFixed(2)}`;
+  }
   return {
     exchange: 'BitMEX',
     link: `/strategies/bitmex/${strategy.symbol}`,
@@ -48,7 +54,7 @@ export function normalizeBitmexStrategy(strategy, candle) {
     break_even,
     leverage: strategy.leverage,
     satoshi,
-    quantity: `$${strategy.currentQty.toFixed(2)}`,
+    quantity,
     last_price,
     liquidation,
     entry_price,

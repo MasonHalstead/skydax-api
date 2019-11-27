@@ -2,7 +2,12 @@ import { setCandle } from 'ducks/actions';
 import { postData } from 'utils/axios';
 import moment from 'moment';
 
-export const getCandle = ({ exchange, interval, pair }) => async dispatch => {
+export const getCandle = ({
+  exchange = 'bitmex',
+  interval = 'm1',
+  pair,
+}) => async dispatch => {
+  let candle = {};
   const data = {
     start_date: moment
       .utc()
@@ -11,6 +16,9 @@ export const getCandle = ({ exchange, interval, pair }) => async dispatch => {
       .format(),
   };
   const res = await postData(`/candles/${exchange}/${pair}/${interval}`, data);
-  await dispatch(setCandle(res.data[0]));
-  return res.data[0];
+  if (res.data.length > 0) {
+    [candle] = await res.data;
+    await dispatch(setCandle(candle));
+  }
+  return candle;
 };

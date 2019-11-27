@@ -31,14 +31,14 @@ export class StrategiesPage extends Component {
   state = {
     headers: [
       {
-        title: 'Exchange',
+        title: 'Pair',
         show: true,
-        flex_grow: 1,
         min_width: '125px',
+        flex_grow: 1,
         uuid: uuid.v1(),
       },
       {
-        title: 'Pair',
+        title: 'Exchange',
         show: true,
         min_width: '125px',
         uuid: uuid.v1(),
@@ -127,8 +127,8 @@ export class StrategiesPage extends Component {
             rows={strategies}
             headers={headers}
             cell_components={[
-              ExchangeCell,
               PairCell,
+              ExchangeCell,
               QuantityCell,
               LeverageCell,
               SatoshiCell,

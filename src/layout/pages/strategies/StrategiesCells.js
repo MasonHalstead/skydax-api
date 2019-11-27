@@ -5,25 +5,29 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from './StrategiesPage.module.scss';
 
-export const ExchangeCell = ({ row }) => (
-  <div className={cn.cell}>
-    <Link to={row.link} className={cn.exchangeCell}>
-      {row.exchange}
-    </Link>
-  </div>
-);
-ExchangeCell.propTypes = {
-  row: PropTypes.object,
-};
-
 export const PairCell = ({ row }) => (
-  <div className={classNames(cn.cell, cn.center)}>
-    <Link to={row.link} className={cn.strategyCell}>
+  <div className={cn.cell}>
+    <div className={cn.stateWrapper}>
+      {row.open && <span className={cn.open}></span>}
+      {!row.open && <span className={cn.closed}></span>}
+    </div>
+    <Link to={row.link} className={cn.exchangeCell}>
       {row.pair}
     </Link>
   </div>
 );
 PairCell.propTypes = {
+  row: PropTypes.object,
+};
+
+export const ExchangeCell = ({ row }) => (
+  <div className={classNames(cn.cell, cn.center)}>
+    <Link to={row.link} className={cn.strategyCell}>
+      {row.exchange}
+    </Link>
+  </div>
+);
+ExchangeCell.propTypes = {
   row: PropTypes.object,
 };
 
