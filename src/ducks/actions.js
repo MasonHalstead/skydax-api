@@ -56,6 +56,15 @@ export const clearWallet = () => ({
   type: constants.CLEAR_WALLET,
 });
 
+// ------ CANDLE ACTIONS ------ //
+export const setCandle = candle => ({
+  type: constants.SET_CANDLE,
+  payload: candle,
+});
+export const clearCandle = () => ({
+  type: constants.CLEAR_CANDLE,
+});
+
 // ------ FUNDING ACTIONS ------ //
 export const setFunding = funding => ({
   type: constants.SET_FUNDING,

@@ -11,7 +11,7 @@ export function normalizeBitmexStrategies(strategies) {
   return strategies.map(strategy => normalizeBitmexStrategy(strategy));
 }
 
-export function normalizeBitmexStrategy(strategy) {
+export function normalizeBitmexStrategy(strategy, candle) {
   const {
     currentQty,
     lastPrice,
@@ -21,7 +21,7 @@ export function normalizeBitmexStrategy(strategy) {
   } = strategy;
   let satoshi = null;
   let break_even = null;
-  let last_price = null;
+  let last_price = candle.close;
   let liquidation = null;
   let entry_price = null;
   if (currentQty && lastPrice) {
