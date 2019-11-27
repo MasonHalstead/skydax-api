@@ -5,11 +5,20 @@ import classNames from 'classnames';
 import cn from './Button.module.scss';
 
 export const Button = React.memo(
-  ({ children, width, left_icon, right_icon, variant, disabled, onClick }) => (
+  ({
+    children,
+    margin,
+    width,
+    left_icon,
+    right_icon,
+    variant,
+    disabled,
+    onClick,
+  }) => (
     <button
       className={classNames(cn.button, cn[variant])}
       disabled={disabled}
-      style={{ width }}
+      style={{ width, margin }}
       onClick={onClick}
       type="button"
     >
@@ -27,12 +36,14 @@ Button.defaultProps = {
   left_icon: false,
   right_icon: false,
   width: '100%',
+  margin: '0px',
   variant: 'primary',
   disabled: false,
   onClick: () => {},
 };
 Button.propTypes = {
   disabled: PropTypes.any,
+  margin: PropTypes.string,
   variant: PropTypes.string,
   left_icon: PropTypes.any,
   right_icon: PropTypes.any,

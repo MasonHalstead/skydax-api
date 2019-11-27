@@ -11,6 +11,7 @@ class ConnectedPublicRoute extends PureComponent {
     privateUser: PropTypes.bool,
     privateVerifiedUser: PropTypes.bool,
     component: PropTypes.object,
+    variant: PropTypes.string,
     layout: PropTypes.any,
     location: PropTypes.object,
   };
@@ -19,6 +20,7 @@ class ConnectedPublicRoute extends PureComponent {
     const {
       component: Component,
       privateUser,
+      variant,
       privateVerifiedUser,
       location,
       ...rest
@@ -64,7 +66,7 @@ class ConnectedPublicRoute extends PureComponent {
         key={location.pathname}
         {...rest}
         render={props => (
-          <PublicLayout>
+          <PublicLayout variant={variant}>
             <Component {...props} />
           </PublicLayout>
         )}

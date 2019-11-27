@@ -40,7 +40,19 @@ class ConnectedApp extends PureComponent {
             <PublicRoute
               exact
               path={routes.LOGIN}
+              variant="secondary"
               component={pages.LoginPage}
+            />
+            <PublicRoute
+              exact
+              path={routes.PASSWORD}
+              variant="secondary"
+              component={pages.PasswordPage}
+            />
+            <PublicRoute
+              exact
+              path={routes.REGISTER}
+              component={pages.RegisterPage}
             />
             <ValidateRoute
               exact

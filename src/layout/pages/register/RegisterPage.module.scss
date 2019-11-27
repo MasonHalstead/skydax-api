@@ -14,7 +14,7 @@
 .loginBlock {
   display: flex;
   width: 750px;
-  height: 450px;
+  height: 500px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -41,6 +41,7 @@
     font-weight: 400;
   }
   .error {
+    margin-top: 15px;
     color: #d9534f;
     border: 1px solid lighten(#d9534f, 25%);
     background: lighten(#d9534f, 35%);

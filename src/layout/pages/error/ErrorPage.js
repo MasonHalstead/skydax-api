@@ -6,7 +6,7 @@ const { PUBLIC_URL } = process.env;
 class ErrorPage extends React.PureComponent {
   render() {
     return (
-      <div className={cn.notFoundWrapper}>
+      <div className={cn.page}>
         <img
           src={`${PUBLIC_URL}/404.png`}
           alt="Cognitiv 404 Error"

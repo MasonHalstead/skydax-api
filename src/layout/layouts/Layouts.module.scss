@@ -1,4 +1,5 @@
-.privateContainer, .publicContainer {
+.privateContainer,
+.publicContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -6,33 +7,57 @@
   min-width: 1200px;
 }
 .privateContainer {
-    background: lighten(#2e3440, 8%);
+  background: lighten(#2e3440, 8%);
 }
+.publicContainer {
+  height: 100%;
+  width: 100%;
+}
+.primary {
+  background: darken(#8989ba, 35%);
+  background-image: linear-gradient(
+    90deg,
+    darken(#8989ba, 35%) 0%,
+    darken(#8989ba, 35%) 52%,
+    darken(#a7a6cb, 35%) 100%
+  );
+}
+.secondary {
+  background: rgba(63, 71, 88, 1);
+  background: linear-gradient(
+    90deg,
+    rgba(40, 45, 58, 1) 0%,
+    rgba(63, 71, 88, 1) 100%
+  );
+}
+
 .privateContent {
   display: flex;
   width: 100%;
   flex-grow: 1;
 }
 .publicHeader {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 10px;
-    a, p {
-        margin: 0px 20px;
-        font-weight: 400;
-    }
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+  a,
+  p {
+    margin: 0px 20px;
+    font-weight: 400;
+  }
 }
 .publicFooter {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 10px;
-    a, p {
-        margin: 0px 20px;
-        font-weight: 400;
-    }
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 10px;
+  a,
+  p {
+    margin: 0px 20px;
+    font-weight: 400;
+  }
 }
 .flex {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 .version {
   color: #fff;

@@ -8,10 +8,10 @@ import {
 import { Input } from 'components/inputs/Input';
 import { Button } from 'components/buttons/Button';
 import { postPublic } from 'utils/axios';
-import cn from './LoginPage.module.scss';
+import cn from './PasswordPage.module.scss';
 const { PUBLIC_URL } = process.env;
 
-export class LoginPage extends Component {
+export class PasswordPage extends Component {
   static propTypes = {
     loginUser: PropTypes.func,
     setLoading: PropTypes.func,
@@ -56,15 +56,10 @@ export class LoginPage extends Component {
   };
 
   render() {
-    const { email_address, password, error } = this.state;
+    const { email_address, error } = this.state;
     return (
       <div className={cn.page}>
         <div className={cn.loginBlock}>
-          <img
-            src={`${PUBLIC_URL}/moonbase.jpg`}
-            alt="Skydax Moon Base"
-            height={450}
-          />
           <div className={cn.accountBlock}>
             <img
               src={`${PUBLIC_URL}/skydax-dark.png`}
@@ -72,29 +67,26 @@ export class LoginPage extends Component {
               width={90}
             />
             <div className={cn.accountForm}>
-              <h2>Account Login</h2>
+              <h2>Reset Password</h2>
               <Input
                 label="Email Address"
                 margin="10px 0px"
                 value={email_address}
                 handleOnChange={this.handleEmailAddress}
               />
-              <Input
-                label="Password"
-                type="password"
-                margin="10px 0px"
-                value={password}
-                handleOnChange={this.handlePassword}
-              />
               <p className={cn.terms}>
-                By using Skydax as a service you agree to our privacy policy and
-                terms of service
+                Send a new authentication token to your email address and follow
+                the link to reset your password.
               </p>
               {error && <p className={cn.error}>{error}</p>}
             </div>
             <div className={cn.flex} />
-            <Button onClick={this.handleSubmit} variant="secondary">
-              Account Login
+            <Button
+              onClick={this.handleSubmit}
+              variant="secondary"
+              margin="15px 0px 0px 0px"
+            >
+              Send Reset Email
             </Button>
           </div>
         </div>
@@ -108,4 +100,4 @@ const mapDispatchToProps = {
   setLoading: setLoadingAction,
 };
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(null, mapDispatchToProps)(PasswordPage);
