@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { TableEmptyRow } from './TableEmptyRow';
+import { TableEmpty } from './TableEmpty';
 import cn from './Table.module.scss';
 
 export class TableRows extends PureComponent {
@@ -41,6 +41,6 @@ export class TableRows extends PureComponent {
         </div>
       );
     }
-    return <TableEmptyRow headers={headers} settings={settings} />;
+    return <TableEmpty headers={headers} settings={settings} />;
   }
 }

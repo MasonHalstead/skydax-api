@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {
+  getBitmexCandles as getBitmexCandlesOperator,
+  getKrakenCandles as getKrakenCandlesOperator,
+} from 'ducks/operators/charts';
 import { handleApiError as handleApiErrorOperator } from 'ducks/operators/settings';
 import { getStrategies as getStrategiesOperator } from 'ducks/operators/strategies';
 import { setLoading as setLoadingAction } from 'ducks/actions';
 import { Table } from 'components/table/Table';
 import uuid from 'uuid';
+import moment from 'moment';
+import { StrategyBitmexBlock } from './StrategyBitmexBlock';
+import { StrategyKrakenBlock } from './StrategyKrakenBlock';
 import {
   ExchangeCell,
   PairCell,
@@ -25,6 +32,8 @@ export class StrategiesPage extends Component {
     strategies: PropTypes.array,
     handleApiError: PropTypes.func,
     getStrategies: PropTypes.func,
+    getKrakenCandles: PropTypes.func,
+    getBitmexCandles: PropTypes.func,
     setLoading: PropTypes.func,
   };
 
@@ -99,10 +108,32 @@ export class StrategiesPage extends Component {
   };
 
   handleInitialData = async () => {
-    const { setLoading, getStrategies, handleApiError } = this.props;
+    const {
+      setLoading,
+      getStrategies,
+      getBitmexCandles,
+      getKrakenCandles,
+      handleApiError,
+    } = this.props;
+    const start_date = moment
+      .utc()
+      .startOf('day')
+      .format();
+    const end_date = moment.utc().format();
+
     setLoading(true);
     try {
       await getStrategies();
+      await getBitmexCandles({
+        start_date,
+        end_date,
+        pair: 'XBTUSD',
+      });
+      await getKrakenCandles({
+        start_date,
+        end_date,
+        pair: 'XXBTZUSD',
+      });
     } catch (err) {
       handleApiError(err);
     }
@@ -115,12 +146,8 @@ export class StrategiesPage extends Component {
     return (
       <div className={cn.page}>
         <div className={cn.strategyBlock}>
-          <div className={cn.panelLeft}>
-            <p>Strategy Stats</p>
-          </div>
-          <div className={cn.panelRight}>
-            <p>Strategy Stats</p>
-          </div>
+          <StrategyBitmexBlock />
+          <StrategyKrakenBlock />
         </div>
         <div className={cn.strategyTable}>
           <Table
@@ -151,6 +178,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setLoading: setLoadingAction,
+  getKrakenCandles: getKrakenCandlesOperator,
+  getBitmexCandles: getBitmexCandlesOperator,
   handleApiError: handleApiErrorOperator,
   getStrategies: getStrategiesOperator,
 };

@@ -7,6 +7,7 @@ import { modalsReducer } from './modalsReducer';
 import { candleReducer } from './candleReducer';
 import { strategiesReducer } from './strategiesReducer';
 import { strategyReducer } from './strategyReducer';
+import { chartsReducer } from './chartsReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   modals: modalsReducer,
   funding: fundingReducer,
   strategy: strategyReducer,
+  charts: chartsReducer,
   strategies: strategiesReducer,
 });
 

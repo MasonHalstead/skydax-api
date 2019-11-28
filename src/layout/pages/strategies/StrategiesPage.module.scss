@@ -14,30 +14,123 @@ $connected-color: lighten(#70a800, 10%);
 }
 .strategyBlock {
   display: flex;
-  height: 200px;
+  height: 320px;
   width: 100%;
 }
 .panelLeft {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: calc(50% - 10px);
+  padding: 10px;
   align-self: stretch;
   background: #2e3440;
   color: #fff;
   border: 1px solid #3b4253;
   margin-right: 10px;
+  .header {
+    display: flex;
+    width: 100%;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+.exchange {
+  font-weight: 400;
+  margin: 0px;
+}
+.base {
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0px;
+  margin-left: 25px;
+}
+.text {
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0px;
+  margin-left: 8px;
+}
+.flex {
+  flex-grow: 1;
+}
+.control {
+  display: flex;
+  padding: 8px 0px;
+  width: 100%;
+}
+.selector {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  cursor: pointer;
+  padding: 1px 7px;
+  border-radius: 2px;
+  margin: 0px;
+  margin-right: 5px;
+  color: #bdc3d9;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  line-height: 1.5;
+  font-size: 11px;
+  font-weight: 400;
+  &:hover {
+    color: #fff;
+    background: darken(#282d37, 3%);
+    border: 1px solid darken(#3b4253, 3%);
+  }
+}
+.selector:last-child {
+  margin-right: 0px;
+}
+.active {
+  color: #fff;
+  background: #282d37;
+  border: 1px solid #3b4253;
+}
+.chart {
+  margin: 5px 0px;
+  position: relative;
+  flex-grow: 1;
+}
+.candle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+  margin-top: 10px;
+  background: #282d37;
+  border: 1px solid #3b4253;
+  padding: 4px 10px;
+  width: 130px;
+  p {
+    font-weight: 400;
+    margin: 0px;
+    line-height: 1.5;
+  }
 }
 .panelRight {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   width: calc(50% - 10px);
+  padding: 10px;
   align-self: stretch;
   background: #2e3440;
   color: #fff;
   border: 1px solid #3b4253;
   margin-left: 10px;
+  .header {
+    display: flex;
+    width: 100%;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 .strategyTable {
   display: flex;

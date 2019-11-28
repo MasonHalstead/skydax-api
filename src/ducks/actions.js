@@ -73,3 +73,19 @@ export const setFunding = funding => ({
 export const clearFunding = () => ({
   type: constants.CLEAR_FUNDING,
 });
+
+// ------ CANDLE ACTIONS ------ //
+export const setBitmexCandles = candles => ({
+  type: constants.SET_BITMEX_CANDLES,
+  payload: candles,
+});
+export const clearBitmexCandles = () => ({
+  type: constants.CLEAR_BITMEX_CANDLES,
+});
+export const setKrakenCandles = candles => ({
+  type: constants.SET_KRAKEN_CANDLES,
+  payload: candles,
+});
+export const clearKrakenCandles = () => ({
+  type: constants.CLEAR_KRAKEN_CANDLES,
+});

@@ -1,10 +1,29 @@
 import uuid from 'uuid';
+import moment from 'moment';
 
 export function normalizeWithUUID(array) {
   return array.map(arr => ({
     ...arr,
     uuid: uuid.v1(),
   }));
+}
+
+export function normalizeCandles(candles) {
+  return candles.reduce(
+    (acc, next) => ({
+      dates: [
+        ...acc.dates,
+        moment(next.date_time)
+          .utc()
+          .format('MM/DD HH:mm'),
+      ],
+      data: [...acc.data, next.close],
+    }),
+    {
+      dates: [],
+      data: [],
+    },
+  );
 }
 
 export function normalizeBitmexStrategies(strategies) {
