@@ -6,8 +6,8 @@ import { getStrategiesConfig as getStrategiesConfigOperator } from 'ducks/operat
 import { setLoading as setLoadingAction } from 'ducks/actions';
 import { Table } from 'components/table/Table';
 import uuid from 'uuid';
-import { AccountBlock } from './AccountBlock';
-import { EquityBlock } from './EquityBlock';
+import { StrategyAccountBlock } from './StrategyAccountBlock';
+import { StrategyEquityBlock } from './StrategyEquityBlock';
 import {
   ExchangeCell,
   PairCell,
@@ -117,8 +117,8 @@ export class StrategiesPage extends Component {
     return (
       <div className={cn.page}>
         <div className={cn.strategyBlock}>
-          <AccountBlock />
-          <EquityBlock />
+          <StrategyAccountBlock />
+          <StrategyEquityBlock />
         </div>
         <div className={cn.strategyTable}>
           <Table

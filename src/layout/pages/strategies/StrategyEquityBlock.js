@@ -1,84 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getKrakenCandles as getKrakenCandlesOperator } from 'ducks/operators/charts';
 import { selectBitmexCandles, selectBitmexEquity } from 'ducks/selectors';
-import { handleApiError as handleApiErrorOperator } from 'ducks/operators/settings';
-import { setLoading as setLoadingAction } from 'ducks/actions';
-import moment from 'moment';
 import { Line } from 'react-chartjs-2';
-import classNames from 'classnames';
 import cn from './StrategiesPage.module.scss';
 
-class ConnectedEquityBlock extends Component {
+class ConnectedStrategyEquityBlock extends PureComponent {
   static propTypes = {
     candles: PropTypes.object,
+    equity: PropTypes.object,
     candle: PropTypes.object,
-    getKrakenCandles: PropTypes.func,
-    setLoading: PropTypes.func,
-    handleApiError: PropTypes.func,
-  };
-
-  static defaultProps = {
-    candles: [],
-    candle: {
-      open: 0,
-      high: 0,
-      low: 0,
-      close: 0,
-    },
-  };
-
-  state = {
-    pair: 'XXBTZUSD',
-    days: 'today',
-    start_date: '',
-    end_date: '',
-    interval: 'm1',
-  };
-
-  componentDidMount() {
-    this.setState({
-      start_date: moment
-        .utc()
-        .startOf('day')
-        .format(),
-      end_date: moment.utc().format(),
-    });
-  }
-
-  handleChartData = async () => {
-    const { setLoading, handleApiError, getKrakenCandles } = this.props;
-    const { interval, start_date, end_date, pair } = this.state;
-
-    const data = {
-      interval,
-      start_date,
-      end_date,
-      pair,
-    };
-
-    setLoading(true);
-    try {
-      await getKrakenCandles(data);
-    } catch (err) {
-      handleApiError(err);
-    }
-    setLoading(false);
-  };
-
-  handleInterval = async interval => {
-    await this.setState({ interval });
-    await this.handleChartData();
-  };
-
-  handleDays = async days => {
-    const start_date = moment().startOf('day');
-    if (days !== 'today') {
-      start_date.subtract(days, 'days');
-    }
-    await this.setState({ days, start_date: start_date.format() });
-    await this.handleChartData();
   };
 
   render() {
@@ -89,9 +20,10 @@ class ConnectedEquityBlock extends Component {
         <div className={cn.header}>
           <p className={cn.exchange}>BitMEX</p>
           <div className={cn.flex} />
-          <p className={cn.base}>Volume:</p>
+          <p className={cn.pair}>XBTUSD</p>
+          <p className={cn.base}>Last Volume:</p>
           <p className={cn.text}>{volume}</p>
-          <p className={cn.base}>Price:</p>
+          <p className={cn.base}>Last Price:</p>
           <p className={cn.text}>{close}</p>
         </div>
         <div className={cn.chart}>
@@ -190,13 +122,7 @@ const mapStateToProps = state => ({
   equity: selectBitmexEquity(state),
 });
 
-const mapDispatchToProps = {
-  handleApiError: handleApiErrorOperator,
-  getKrakenCandles: getKrakenCandlesOperator,
-  setLoading: setLoadingAction,
-};
-
-export const EquityBlock = connect(
+export const StrategyEquityBlock = connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(ConnectedEquityBlock);
+  null,
+)(ConnectedStrategyEquityBlock);

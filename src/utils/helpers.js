@@ -74,7 +74,7 @@ export function handleKeywordFilter(props) {
 }
 
 export function handleEquity(equity) {
-  return ((equity.balance * equity.price_conversion) / 100).toFixed(2);
+  return Math.round((equity.balance * equity.price_conversion) / 100);
 }
 
 export function handleSettings(settings) {

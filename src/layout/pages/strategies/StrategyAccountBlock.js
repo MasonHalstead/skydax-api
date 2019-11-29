@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import cn from './StrategiesPage.module.scss';
 
-class ConnectedAccountBlock extends PureComponent {
+class ConnectedStrategyAccountBlock extends PureComponent {
   static propTypes = {
     wallet: PropTypes.object,
     funding: PropTypes.object,
@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
   funding: state.funding,
 });
 
-export const AccountBlock = connect(
+export const StrategyAccountBlock = connect(
   mapStateToProps,
   null,
-)(ConnectedAccountBlock);
+)(ConnectedStrategyAccountBlock);
