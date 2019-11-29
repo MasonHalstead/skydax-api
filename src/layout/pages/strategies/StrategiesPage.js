@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  getBitmexCandles as getBitmexCandlesOperator,
-  getKrakenCandles as getKrakenCandlesOperator,
-} from 'ducks/operators/charts';
 import { handleApiError as handleApiErrorOperator } from 'ducks/operators/settings';
-import { getStrategies as getStrategiesOperator } from 'ducks/operators/strategies';
+import { getStrategiesConfig as getStrategiesConfigOperator } from 'ducks/operators/strategies';
 import { setLoading as setLoadingAction } from 'ducks/actions';
 import { Table } from 'components/table/Table';
 import uuid from 'uuid';
-import moment from 'moment';
-import { StrategyBitmexBlock } from './StrategyBitmexBlock';
-import { StrategyKrakenBlock } from './StrategyKrakenBlock';
+import { AccountBlock } from './AccountBlock';
+import { EquityBlock } from './EquityBlock';
 import {
   ExchangeCell,
   PairCell,
@@ -31,9 +26,7 @@ export class StrategiesPage extends Component {
   static propTypes = {
     strategies: PropTypes.array,
     handleApiError: PropTypes.func,
-    getStrategies: PropTypes.func,
-    getKrakenCandles: PropTypes.func,
-    getBitmexCandles: PropTypes.func,
+    getStrategiesConfig: PropTypes.func,
     setLoading: PropTypes.func,
   };
 
@@ -108,32 +101,10 @@ export class StrategiesPage extends Component {
   };
 
   handleInitialData = async () => {
-    const {
-      setLoading,
-      getStrategies,
-      getBitmexCandles,
-      getKrakenCandles,
-      handleApiError,
-    } = this.props;
-    const start_date = moment
-      .utc()
-      .startOf('day')
-      .format();
-    const end_date = moment.utc().format();
-
+    const { setLoading, getStrategiesConfig, handleApiError } = this.props;
     setLoading(true);
     try {
-      await getStrategies();
-      await getBitmexCandles({
-        start_date,
-        end_date,
-        pair: 'XBTUSD',
-      });
-      await getKrakenCandles({
-        start_date,
-        end_date,
-        pair: 'XXBTZUSD',
-      });
+      await getStrategiesConfig();
     } catch (err) {
       handleApiError(err);
     }
@@ -146,8 +117,8 @@ export class StrategiesPage extends Component {
     return (
       <div className={cn.page}>
         <div className={cn.strategyBlock}>
-          <StrategyBitmexBlock />
-          <StrategyKrakenBlock />
+          <AccountBlock />
+          <EquityBlock />
         </div>
         <div className={cn.strategyTable}>
           <Table
@@ -178,10 +149,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setLoading: setLoadingAction,
-  getKrakenCandles: getKrakenCandlesOperator,
-  getBitmexCandles: getBitmexCandlesOperator,
+  getStrategiesConfig: getStrategiesConfigOperator,
   handleApiError: handleApiErrorOperator,
-  getStrategies: getStrategiesOperator,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StrategiesPage);

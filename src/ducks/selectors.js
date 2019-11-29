@@ -1,4 +1,4 @@
-import { normalizeCandles } from 'utils/normalizers';
+import { normalizeCandles, normalizeEquity } from 'utils/normalizers';
 
 export function selectPrivateUser(state) {
   return state.user && state.user.token && !state.user.email_verified;
@@ -9,6 +9,12 @@ export function selectPrivateVerifiedUser(state) {
 export function selectBitmexCandles(state) {
   if (state.charts && state.charts.bitmex_candles) {
     return normalizeCandles(state.charts.bitmex_candles);
+  }
+  return [];
+}
+export function selectBitmexEquity(state) {
+  if (state.charts && state.charts.bitmex_equity) {
+    return normalizeEquity(state.charts.bitmex_equity);
   }
   return [];
 }

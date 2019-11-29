@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import { handleEquity } from 'utils/helpers';
 import moment from 'moment';
 
 export function normalizeWithUUID(array) {
@@ -6,6 +7,24 @@ export function normalizeWithUUID(array) {
     ...arr,
     uuid: uuid.v1(),
   }));
+}
+
+export function normalizeEquity(equity) {
+  return equity.reduce(
+    (acc, next) => ({
+      dates: [
+        ...acc.dates,
+        moment(next.date_time)
+          .utc()
+          .format('MM/DD HH:mm'),
+      ],
+      data: [...acc.data, handleEquity(next)],
+    }),
+    {
+      dates: [],
+      data: [],
+    },
+  );
 }
 
 export function normalizeCandles(candles) {

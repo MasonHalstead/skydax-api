@@ -14,27 +14,28 @@ $connected-color: lighten(#70a800, 10%);
 }
 .strategyBlock {
   display: flex;
-  height: 300px;
+  height: 250px;
   width: 100%;
 }
 .panelLeft {
   display: flex;
   flex-direction: column;
-  width: calc(50% - 10px);
-  padding: 10px;
+  width: calc(35% - 10px);
+  padding: 7px 10px;
   align-self: stretch;
   background: #2e3440;
   color: #fff;
   border: 1px solid #3b4253;
   margin-right: 10px;
-  .header {
+  .info {
     display: flex;
-    width: 100%;
-  }
-  .footer {
-    display: flex;
+    align-items: center;
     justify-content: space-between;
-    width: 100%;
+    p {
+      color: #fff;
+      font-weight: 400;
+      margin: 3px 0px;
+    }
   }
 }
 .exchange {
@@ -91,7 +92,7 @@ $connected-color: lighten(#70a800, 10%);
   border: 1px solid #3b4253;
 }
 .chart {
-  margin: 5px 0px;
+  margin: 15px 0px 5px 0px;
   position: relative;
   flex-grow: 1;
 }
@@ -115,8 +116,8 @@ $connected-color: lighten(#70a800, 10%);
 .panelRight {
   display: flex;
   flex-direction: column;
-  width: calc(50% - 10px);
-  padding: 10px;
+  width: calc(65% - 10px);
+  padding: 7px 10px;
   align-self: stretch;
   background: #2e3440;
   color: #fff;

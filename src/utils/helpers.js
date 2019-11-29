@@ -73,6 +73,10 @@ export function handleKeywordFilter(props) {
   return rows;
 }
 
+export function handleEquity(equity) {
+  return ((equity.balance * equity.price_conversion) / 100).toFixed(2);
+}
+
 export function handleSettings(settings) {
   let { footer_height } = settings;
   if (settings.footer) {
@@ -87,4 +91,4 @@ export function handleSettings(settings) {
 export function isObject(obj) {
   const type = typeof obj;
   return type === 'function' || (type === 'object' && !!obj);
-};
+}
