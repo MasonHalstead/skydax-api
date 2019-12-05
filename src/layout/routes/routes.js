@@ -2,6 +2,7 @@ export const routes = {
   ROOT: '/',
   LOGIN: '/login',
   REGISTER: '/register',
+  EMAIL_VERIFY: '/email/:verify',
   PASSWORD: '/password',
   DOCS: '/docs',
   VALIDATE: '/validate',

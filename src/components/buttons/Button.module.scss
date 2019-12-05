@@ -49,3 +49,14 @@
     background: darken($button_secondary_color, 10%);
   }
 }
+.ghost {
+  color: #fff;
+  background: transparent;
+  border: 2px solid #fff;
+  &:hover {
+    background: darken($button_secondary_color, 5%);
+  }
+  &:active {
+    background: darken($button_secondary_color, 10%);
+  }
+}

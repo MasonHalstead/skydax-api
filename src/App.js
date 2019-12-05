@@ -51,12 +51,19 @@ class ConnectedApp extends PureComponent {
             />
             <PublicRoute
               exact
+              path={routes.EMAIL_VERIFY}
+              variant="secondary"
+              component={pages.EmailPage}
+            />
+            <PublicRoute
+              exact
               path={routes.REGISTER}
               component={pages.RegisterPage}
             />
             <ValidateRoute
               exact
               path={routes.VALIDATE}
+              variant="secondary"
               component={pages.ValidatePage}
             />
             <PrivateRoute

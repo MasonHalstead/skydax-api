@@ -61,14 +61,15 @@ export class LoginPage extends Component {
       <div className={cn.page}>
         <div className={cn.loginBlock}>
           <img
-            src={`${PUBLIC_URL}/moonbase.jpg`}
+            src={`${PUBLIC_URL}/moonshot.jpg`}
             alt="Skydax Moon Base"
+            width={297}
             height={450}
           />
           <div className={cn.accountBlock}>
             <img
               src={`${PUBLIC_URL}/skydax-dark.png`}
-              alt="Skydax Moon Base"
+              alt="Skydax Logo"
               width={90}
             />
             <div className={cn.accountForm}>

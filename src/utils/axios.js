@@ -11,6 +11,13 @@ export function postPublic(url, data) {
     headers: { 'Content-Type': 'application/json' },
   });
 }
+export function getPublic(url) {
+  return axios({
+    method: 'get',
+    url: `${REACT_APP_HOST}${url}`,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
 export function getData(url) {
   const user = JSON.parse(localStorage.getItem('user'));
 

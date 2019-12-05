@@ -11,6 +11,7 @@ class ConnectedValidateRoute extends PureComponent {
     privateUser: PropTypes.bool,
     privateVerifiedUser: PropTypes.bool,
     component: PropTypes.object,
+    variant: PropTypes.string,
     layout: PropTypes.any,
     location: PropTypes.object,
   };
@@ -20,6 +21,7 @@ class ConnectedValidateRoute extends PureComponent {
       component: Component,
       privateUser,
       privateVerifiedUser,
+      variant,
       location,
       ...rest
     } = this.props;
@@ -64,7 +66,7 @@ class ConnectedValidateRoute extends PureComponent {
         key={location.pathname}
         {...rest}
         render={props => (
-          <ValidateLayout>
+          <ValidateLayout variant={variant}>
             <Component {...props} />
           </ValidateLayout>
         )}
