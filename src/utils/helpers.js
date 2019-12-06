@@ -9,6 +9,21 @@ export function compareJSON(array1 = [], array2 = []) {
   return JSON.stringify(array1) === JSON.stringify(array2);
 }
 
+export function handleChartScales(scale, compare) {
+  let min = compare.min + 100;
+  let max = compare.max + 100;
+  if (scale.min < compare.min) {
+    min = scale.min + 100;
+  }
+  if (scale.max > compare.max) {
+    max = scale.max + 100;
+  }
+  return {
+    min,
+    max,
+  };
+}
+
 export function containsStrings(string1 = '', string2 = '') {
   return string1
     .toString()

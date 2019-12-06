@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectBitmexCandles, selectBitmexEquity } from 'ducks/selectors';
+import { handleChartScales } from 'utils/helpers';
 import { Line } from 'react-chartjs-2';
 import cn from './StrategiesPage.module.scss';
 
@@ -26,6 +27,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
     const { chart } = this.state;
     const { candles, equity, candle } = this.props;
     const { close, volume } = candle;
+    const scale = handleChartScales(candles, equity);
+    console.log(scale);
     return (
       <div className={cn.panelRight}>
         <div className={cn.header}>
@@ -119,6 +122,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                         precision: 0,
                         fontColor: '#fff',
                         maxTicksLimit: 6,
+                        suggestedMin: (scale.min * equity.base) / 100,
+                        suggestedMax: (scale.max * equity.base) / 100,
                         callback(value) {
                           return `$${value}`;
                         },
@@ -131,6 +136,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                         precision: 0,
                         fontColor: '#fff',
                         maxTicksLimit: 6,
+                        suggestedMin: (scale.min * candles.base) / 100,
+                        suggestedMax: (scale.max * candles.base) / 100,
                         callback(value) {
                           return `$${value}`;
                         },

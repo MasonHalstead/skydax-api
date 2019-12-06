@@ -11,10 +11,14 @@ export function normalizeWithUUID(array) {
 
 export function normalizeEquity(equity) {
   if (!equity[0]) {
-    return {};
+    return {
+      min: 0,
+      max: 0,
+      base: 0,
+    };
   }
   const balance = handleEquity(equity[0]);
-  return equity.reduce(
+  const dataset = equity.reduce(
     (acc, next) => ({
       dates: [
         ...acc.dates,
@@ -31,14 +35,24 @@ export function normalizeEquity(equity) {
       percent: [],
     },
   );
+  return {
+    ...dataset,
+    base: balance,
+    min: Math.floor(Math.min(...dataset.percent)),
+    max: Math.ceil(Math.max(...dataset.percent)),
+  };
 }
 
 export function normalizeCandles(candles) {
   if (!candles[0]) {
-    return {};
+    return {
+      min: 0,
+      max: 0,
+      base: 0,
+    };
   }
   const [candle] = candles;
-  return candles.reduce(
+  const dataset = candles.reduce(
     (acc, next) => ({
       dates: [
         ...acc.dates,
@@ -55,6 +69,12 @@ export function normalizeCandles(candles) {
       data: [],
     },
   );
+  return {
+    ...dataset,
+    base: candle.close,
+    min: Math.floor(Math.min(...dataset.percent)),
+    max: Math.ceil(Math.max(...dataset.percent)),
+  };
 }
 
 export function normalizeBitmexStrategies(strategies) {
