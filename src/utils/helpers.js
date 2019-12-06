@@ -77,6 +77,11 @@ export function handleEquity(equity) {
   return Math.round((equity.balance * equity.price_conversion) / 100);
 }
 
+export function handlePercent(next, acc) {
+  const difference = next - acc;
+  return ((difference / acc) * 100).toFixed(2);
+}
+
 export function handleSettings(settings) {
   let { footer_height } = settings;
   if (settings.footer) {

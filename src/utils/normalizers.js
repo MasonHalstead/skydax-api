@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import { handleEquity } from 'utils/helpers';
+import { handleEquity, handlePercent } from 'utils/helpers';
 import moment from 'moment';
 
 export function normalizeWithUUID(array) {
@@ -10,6 +10,7 @@ export function normalizeWithUUID(array) {
 }
 
 export function normalizeEquity(equity) {
+  const [data] = equity;
   return equity.reduce(
     (acc, next) => ({
       dates: [
@@ -18,16 +19,22 @@ export function normalizeEquity(equity) {
           .utc()
           .format('MM/DD HH:mm'),
       ],
+      percent: [...acc.percent, handlePercent(next.balance, data.balance)],
       data: [...acc.data, handleEquity(next)],
     }),
     {
       dates: [],
       data: [],
+      percent: [],
     },
   );
 }
 
 export function normalizeCandles(candles) {
+  if (!candles[0]) {
+    return {};
+  }
+  const candle = candles[0];
   return candles.reduce(
     (acc, next) => ({
       dates: [
@@ -36,10 +43,12 @@ export function normalizeCandles(candles) {
           .utc()
           .format('MM/DD HH:mm'),
       ],
+      percent: [...acc.percent, handlePercent(next.close, candle.close)],
       data: [...acc.data, next.close],
     }),
     {
       dates: [],
+      percent: [],
       data: [],
     },
   );

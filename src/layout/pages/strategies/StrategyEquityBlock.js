@@ -46,6 +46,21 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   data: candles.data,
                 },
                 {
+                  label: ' Close Change',
+                  borderColor: '#fff',
+                  borderWidth: 0,
+                  lineTension: 0,
+                  pointRadius: 0,
+                  pointBorderWidth: 0,
+                  pointHoverRadius: 0,
+                  pointBackgroundColor: '#fff',
+                  pointHitRadius: 0,
+                  fill: false,
+                  showLine: false,
+                  yAxisID: 'change',
+                  data: candles.percent,
+                },
+                {
                   label: ' Equity',
                   borderColor: 'orange',
                   borderWidth: 2,
@@ -58,6 +73,21 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   fill: false,
                   yAxisID: 'equity',
                   data: equity.data,
+                },
+                {
+                  label: ' Equity Change',
+                  borderColor: 'orange',
+                  borderWidth: 0,
+                  lineTension: 0,
+                  pointRadius: 0,
+                  pointBorderWidth: 0,
+                  pointHoverRadius: 0,
+                  pointBackgroundColor: 'orange',
+                  pointHitRadius: 0,
+                  fill: false,
+                  showLine: false,
+                  yAxisID: 'change',
+                  data: equity.percent,
                 },
               ],
             }}
@@ -96,6 +126,18 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   {
                     id: 'candle',
                     position: 'right',
+                    ticks: {
+                      precision: 0,
+                      fontColor: '#fff',
+                      maxTicksLimit: 6,
+                      callback(value) {
+                        return `$${value}`;
+                      },
+                    },
+                  },
+                  {
+                    id: 'change',
+                    display: false,
                     ticks: {
                       precision: 0,
                       fontColor: '#fff',
