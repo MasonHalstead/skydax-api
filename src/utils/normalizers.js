@@ -10,7 +10,10 @@ export function normalizeWithUUID(array) {
 }
 
 export function normalizeEquity(equity) {
-  const [data] = equity;
+  if (!equity[0]) {
+    return {};
+  }
+  const balance = handleEquity(equity[0]);
   return equity.reduce(
     (acc, next) => ({
       dates: [
@@ -19,7 +22,7 @@ export function normalizeEquity(equity) {
           .utc()
           .format('MM/DD HH:mm'),
       ],
-      percent: [...acc.percent, handlePercent(next.balance, data.balance)],
+      percent: [...acc.percent, handlePercent(handleEquity(next), balance)],
       data: [...acc.data, handleEquity(next)],
     }),
     {
@@ -34,7 +37,7 @@ export function normalizeCandles(candles) {
   if (!candles[0]) {
     return {};
   }
-  const candle = candles[0];
+  const [candle] = candles;
   return candles.reduce(
     (acc, next) => ({
       dates: [
