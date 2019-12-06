@@ -39,8 +39,15 @@ $connected-color: lighten(#70a800, 10%);
   }
 }
 .exchange {
+  cursor: pointer;
   font-weight: 400;
   margin: 0px;
+  .spacer {
+    margin-right: 5px;
+  }
+}
+.exchange:hover {
+  color: #bdc3d9;
 }
 .pair {
   font-weight: 400;
@@ -95,8 +102,13 @@ $connected-color: lighten(#70a800, 10%);
   background: #282d37;
   border: 1px solid #3b4253;
 }
-.chart {
+.chartPrice {
   margin: 15px 0px 5px 0px;
+  position: relative;
+  flex-grow: 1;
+}
+.chartPercent {
+  margin: 15px 5px 5px 0px;
   position: relative;
   flex-grow: 1;
 }
@@ -129,6 +141,7 @@ $connected-color: lighten(#70a800, 10%);
   margin-left: 10px;
   .header {
     display: flex;
+    align-items: center;
     width: 100%;
   }
   .footer {

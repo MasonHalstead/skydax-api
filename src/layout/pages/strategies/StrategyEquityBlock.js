@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectBitmexCandles, selectBitmexEquity } from 'ducks/selectors';
 import { Line } from 'react-chartjs-2';
 import cn from './StrategiesPage.module.scss';
@@ -12,13 +13,32 @@ class ConnectedStrategyEquityBlock extends PureComponent {
     candle: PropTypes.object,
   };
 
+  state = {
+    chart: 1,
+  };
+
+  handleChartToggle = () => {
+    const { chart } = this.state;
+    this.setState({ chart: chart === 1 ? 2 : 1 });
+  };
+
   render() {
+    const { chart } = this.state;
     const { candles, equity, candle } = this.props;
     const { close, volume } = candle;
     return (
       <div className={cn.panelRight}>
         <div className={cn.header}>
-          <p className={cn.exchange}>BitMEX</p>
+          <p
+            className={cn.exchange}
+            onClick={this.handleChartToggle}
+            role="presentation"
+          >
+            <span className={cn.spacer}>BitMEX</span>{' '}
+            <FontAwesomeIcon
+              icon={chart === 1 ? 'dollar-sign' : 'percentage'}
+            />
+          </p>
           <div className={cn.flex} />
           <p className={cn.pair}>XBTUSD</p>
           <p className={cn.base}>Last Volume:</p>
@@ -26,132 +46,185 @@ class ConnectedStrategyEquityBlock extends PureComponent {
           <p className={cn.base}>Last Price:</p>
           <p className={cn.text}>{close}</p>
         </div>
-        <div className={cn.chart}>
-          <Line
-            data={{
-              labels: candles.dates,
-              datasets: [
-                {
-                  label: ' Close',
-                  borderColor: '#fff',
-                  borderWidth: 2,
-                  lineTension: 0.1,
-                  pointRadius: 0,
-                  pointBorderWidth: 0,
-                  pointHoverRadius: 3,
-                  pointBackgroundColor: '#fff',
-                  pointHitRadius: 10,
-                  fill: false,
-                  yAxisID: 'candle',
-                  data: candles.data,
-                },
-                {
-                  label: ' Close Change',
-                  borderColor: '#fff',
-                  borderWidth: 0,
-                  lineTension: 0,
-                  pointRadius: 0,
-                  pointBorderWidth: 0,
-                  pointHoverRadius: 0,
-                  pointBackgroundColor: '#fff',
-                  pointHitRadius: 0,
-                  fill: false,
-                  showLine: false,
-                  yAxisID: 'change',
-                  data: candles.percent,
-                },
-                {
-                  label: ' Equity',
-                  borderColor: 'orange',
-                  borderWidth: 2,
-                  lineTension: 0.1,
-                  pointRadius: 0,
-                  pointBorderWidth: 0,
-                  pointHoverRadius: 3,
-                  pointBackgroundColor: 'orange',
-                  pointHitRadius: 10,
-                  fill: false,
-                  yAxisID: 'equity',
-                  data: equity.data,
-                },
-                {
-                  label: ' Equity Change',
-                  borderColor: 'orange',
-                  borderWidth: 0,
-                  lineTension: 0,
-                  pointRadius: 0,
-                  pointBorderWidth: 0,
-                  pointHoverRadius: 0,
-                  pointBackgroundColor: 'orange',
-                  pointHitRadius: 0,
-                  fill: false,
-                  showLine: false,
-                  yAxisID: 'change',
-                  data: equity.percent,
-                },
-              ],
-            }}
-            options={{
-              responsive: true,
-              maintainAspectRatio: false,
-              layout: {},
-              legend: {
-                display: false,
-              },
-              tooltips: {
-                mode: 'label',
-                position: 'nearest',
-                xPadding: 20,
-              },
-              scales: {
-                color: '#fff',
-                xAxes: [
+        {chart === 1 && (
+          <div className={cn.chartPrice}>
+            <Line
+              data={{
+                labels: candles.dates,
+                datasets: [
                   {
-                    display: false,
+                    label: ' Last Price',
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    lineTension: 0.1,
+                    pointRadius: 0,
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: '#fff',
+                    pointHitRadius: 10,
+                    fill: false,
+                    yAxisID: 'candle',
+                    data: candles.data,
+                  },
+                  {
+                    label: ' Equity',
+                    borderColor: 'orange',
+                    borderWidth: 2,
+                    lineTension: 0.1,
+                    pointRadius: 0,
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: 'orange',
+                    pointHitRadius: 10,
+                    fill: false,
+                    yAxisID: 'equity',
+                    data: equity.data,
                   },
                 ],
-                yAxes: [
-                  {
-                    id: 'equity',
-                    position: 'left',
-                    ticks: {
-                      precision: 0,
-                      fontColor: '#fff',
-                      maxTicksLimit: 6,
-                      callback(value) {
-                        return `$${value}`;
-                      },
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {},
+                legend: {
+                  display: false,
+                },
+                tooltips: {
+                  mode: 'label',
+                  position: 'nearest',
+                  xPadding: 20,
+                  callbacks: {
+                    label(tooltipItem, data) {
+                      let label =
+                        data.datasets[tooltipItem.datasetIndex].label || '';
+                      if (label) {
+                        label += `: $${tooltipItem.yLabel}`;
+                      }
+                      return label;
                     },
                   },
-                  {
-                    id: 'candle',
-                    position: 'right',
-                    ticks: {
-                      precision: 0,
-                      fontColor: '#fff',
-                      maxTicksLimit: 6,
-                      callback(value) {
-                        return `$${value}`;
+                },
+                scales: {
+                  color: '#fff',
+                  xAxes: [
+                    {
+                      display: false,
+                    },
+                  ],
+                  yAxes: [
+                    {
+                      id: 'equity',
+                      position: 'left',
+                      ticks: {
+                        precision: 0,
+                        fontColor: '#fff',
+                        maxTicksLimit: 6,
+                        callback(value) {
+                          return `$${value}`;
+                        },
                       },
                     },
+                    {
+                      id: 'candle',
+                      position: 'right',
+                      ticks: {
+                        precision: 0,
+                        fontColor: '#fff',
+                        maxTicksLimit: 6,
+                        callback(value) {
+                          return `$${value}`;
+                        },
+                      },
+                    },
+                  ],
+                },
+              }}
+            />
+          </div>
+        )}
+        {chart === 2 && (
+          <div className={cn.chartPercent}>
+            <Line
+              data={{
+                labels: candles.dates,
+                datasets: [
+                  {
+                    label: ' Candle Change',
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    lineTension: 0.1,
+                    pointRadius: 0,
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: '#fff',
+                    pointHitRadius: 10,
+                    fill: false,
+                    yAxisID: 'change',
+                    data: candles.percent,
                   },
                   {
-                    id: 'change',
-                    display: false,
-                    ticks: {
-                      precision: 0,
-                      fontColor: '#fff',
-                      maxTicksLimit: 6,
-                      callback(value) {
-                        return `$${value}`;
-                      },
-                    },
+                    label: ' Equity Change',
+                    borderColor: 'orange',
+                    borderWidth: 2,
+                    lineTension: 0.1,
+                    pointRadius: 0,
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 3,
+                    pointBackgroundColor: 'orange',
+                    pointHitRadius: 10,
+                    fill: false,
+                    yAxisID: 'change',
+                    data: equity.percent,
                   },
                 ],
-              },
-            }}
-          />
-        </div>
+              }}
+              options={{
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {},
+                legend: {
+                  display: false,
+                },
+                tooltips: {
+                  mode: 'label',
+                  position: 'nearest',
+                  xPadding: 20,
+                  callbacks: {
+                    label(tooltipItem, data) {
+                      let label =
+                        data.datasets[tooltipItem.datasetIndex].label || '';
+                      if (label) {
+                        label += `: ${tooltipItem.yLabel}%`;
+                      }
+                      return label;
+                    },
+                  },
+                },
+                scales: {
+                  color: '#fff',
+                  xAxes: [
+                    {
+                      display: false,
+                    },
+                  ],
+                  yAxes: [
+                    {
+                      id: 'change',
+                      ticks: {
+                        precision: 0,
+                        fontColor: '#fff',
+                        maxTicksLimit: 6,
+                        callback(value) {
+                          return `${value} %`;
+                        },
+                      },
+                    },
+                  ],
+                },
+              }}
+            />
+          </div>
+        )}
       </div>
     );
   }
