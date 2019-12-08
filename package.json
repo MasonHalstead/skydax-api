@@ -31,6 +31,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:prod": "env-cmd -f .env.prod react-scripts start",
     "build": "react-scripts build",
     "heroku:prod": "git push heroku master",
     "deploy:prod": "react-scripts build && npm run heroku:prod"

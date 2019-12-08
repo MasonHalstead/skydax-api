@@ -28,7 +28,6 @@ class ConnectedStrategyEquityBlock extends PureComponent {
     const { candles, equity, candle } = this.props;
     const { close, volume } = candle;
     const scale = handleChartScales(candles, equity);
-    console.log(scale);
     return (
       <div className={cn.panelRight}>
         <div className={cn.header}>
@@ -53,17 +52,17 @@ class ConnectedStrategyEquityBlock extends PureComponent {
           <div className={cn.chartPrice}>
             <Line
               data={{
-                labels: candles.dates,
+                labels: [],
                 datasets: [
                   {
                     label: ' Last Price',
-                    borderColor: '#fff',
+                    borderColor: 'rgba(255, 255, 255, 0.9)',
                     borderWidth: 2,
                     lineTension: 0.1,
                     pointRadius: 0,
                     pointBorderWidth: 0,
                     pointHoverRadius: 3,
-                    pointBackgroundColor: '#fff',
+                    pointBackgroundColor: 'rgba(255, 255, 255, 0.9)',
                     pointHitRadius: 10,
                     fill: false,
                     yAxisID: 'candle',
@@ -112,6 +111,7 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   xAxes: [
                     {
                       display: false,
+                      type: 'time',
                     },
                   ],
                   yAxes: [
@@ -153,17 +153,17 @@ class ConnectedStrategyEquityBlock extends PureComponent {
           <div className={cn.chartPercent}>
             <Line
               data={{
-                labels: candles.dates,
+                labels: [],
                 datasets: [
                   {
                     label: ' Candle Change',
-                    borderColor: '#fff',
+                    borderColor: 'rgba(255, 255, 255, 0.9)',
                     borderWidth: 2,
                     lineTension: 0.1,
                     pointRadius: 0,
                     pointBorderWidth: 0,
                     pointHoverRadius: 3,
-                    pointBackgroundColor: '#fff',
+                    pointBackgroundColor: 'rgba(255, 255, 255, 0.9)',
                     pointHitRadius: 10,
                     fill: false,
                     yAxisID: 'change',
@@ -212,6 +212,7 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   xAxes: [
                     {
                       display: false,
+                      type: 'time',
                     },
                   ],
                   yAxes: [

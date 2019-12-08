@@ -1,6 +1,5 @@
 import uuid from 'uuid';
 import { handleEquity, handlePercent } from 'utils/helpers';
-import moment from 'moment';
 
 export function normalizeWithUUID(array) {
   return array.map(arr => ({
@@ -20,17 +19,15 @@ export function normalizeEquity(equity) {
   const balance = handleEquity(equity[0]);
   const dataset = equity.reduce(
     (acc, next) => ({
-      dates: [
-        ...acc.dates,
-        moment(next.date_time)
-          .utc()
-          .format('MM/DD HH:mm'),
+      percent: [
+        ...acc.percent,
+        { x: next.date_time, y: handlePercent(handleEquity(next), balance) },
       ],
-      percent: [...acc.percent, handlePercent(handleEquity(next), balance)],
-      data: [...acc.data, handleEquity(next)],
+      range: [...acc.range, handlePercent(handleEquity(next), balance)],
+      data: [...acc.data, { x: next.date_time, y: handleEquity(next) }],
     }),
     {
-      dates: [],
+      range: [],
       data: [],
       percent: [],
     },
@@ -38,8 +35,8 @@ export function normalizeEquity(equity) {
   return {
     ...dataset,
     base: balance,
-    min: Math.floor(Math.min(...dataset.percent)),
-    max: Math.ceil(Math.max(...dataset.percent)),
+    min: Math.floor(Math.min(...dataset.range)),
+    max: Math.ceil(Math.max(...dataset.range)),
   };
 }
 
@@ -54,17 +51,15 @@ export function normalizeCandles(candles) {
   const [candle] = candles;
   const dataset = candles.reduce(
     (acc, next) => ({
-      dates: [
-        ...acc.dates,
-        moment(next.date_time)
-          .utc()
-          .format('MM/DD HH:mm'),
+      percent: [
+        ...acc.percent,
+        { x: next.date_time, y: handlePercent(next.close, candle.close) },
       ],
-      percent: [...acc.percent, handlePercent(next.close, candle.close)],
-      data: [...acc.data, next.close],
+      range: [...acc.range, handlePercent(next.close, candle.close)],
+      data: [...acc.data, { x: next.date_time, y: next.close }],
     }),
     {
-      dates: [],
+      range: [],
       percent: [],
       data: [],
     },
@@ -72,8 +67,8 @@ export function normalizeCandles(candles) {
   return {
     ...dataset,
     base: candle.close,
-    min: Math.floor(Math.min(...dataset.percent)),
-    max: Math.ceil(Math.max(...dataset.percent)),
+    min: Math.floor(Math.min(...dataset.range)),
+    max: Math.ceil(Math.max(...dataset.range)),
   };
 }
 
