@@ -42,6 +42,7 @@ $connected-color: lighten(#70a800, 10%);
   cursor: pointer;
   font-weight: 400;
   margin: 0px;
+  margin-right: 20px;
   .spacer {
     margin-right: 5px;
   }
@@ -97,11 +98,6 @@ $connected-color: lighten(#70a800, 10%);
 .selector:last-child {
   margin-right: 0px;
 }
-.active {
-  color: #fff;
-  background: #282d37;
-  border: 1px solid #3b4253;
-}
 .chartPrice {
   margin: 15px 0px 5px 0px;
   position: relative;
@@ -111,6 +107,20 @@ $connected-color: lighten(#70a800, 10%);
   margin: 15px 5px 5px 0px;
   position: relative;
   flex-grow: 1;
+}
+.interval {
+  cursor: pointer;
+  color: #bdc3d9;
+  border-radius: 4px;
+  font-weight: 400;
+  padding: 0px 12px;
+  font-size: 11px;
+}
+.interval:hover {
+  color: #fff;
+}
+.active {
+  color: #fff;
 }
 .candle {
   display: flex;

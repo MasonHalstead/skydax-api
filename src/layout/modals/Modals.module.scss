@@ -1,0 +1,34 @@
+.userModal,
+.errorModal {
+  padding: 15px;
+}
+.modalTitle {
+  margin-bottom: 15px;
+  color: #404b69;
+}
+.subTitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #787878;
+}
+.actionContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  color: #404b69;
+  cursor: pointer;
+  p {
+    font-weight: 400;
+    margin: 10px;
+  }
+}
+.actions:hover {
+  color: lighten(#428bca, 10%);
+}
+.active {
+  color: #428bca;
+}

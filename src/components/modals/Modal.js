@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import cn from './Modal.module.scss';
 
-export const Modal = ({ open, handleClose, children, width }) => {
+export const Modal = ({ show, handleClose, children, width }) => {
   const node = useRef();
   const handleClickOutside = e => {
     if (node.current.contains(e.target)) {
@@ -13,7 +13,7 @@ export const Modal = ({ open, handleClose, children, width }) => {
   };
 
   useEffect(() => {
-    if (open) {
+    if (show) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -24,13 +24,9 @@ export const Modal = ({ open, handleClose, children, width }) => {
   });
   return (
     <>
-      {open && (
+      {show && (
         <div className={cn.modal}>
-          <div
-            className={cn.content}
-            ref={node}
-            style={{ minWidth: width, maxWidth: width }}
-          >
+          <div className={cn.content} ref={node} style={{ minWidth: width, maxWidth: width }}>
             <div className={cn.close} onClick={handleClose}>
               <FontAwesomeIcon icon="times" />
             </div>
@@ -44,13 +40,13 @@ export const Modal = ({ open, handleClose, children, width }) => {
 
 Modal.defaultProps = {
   width: '500px',
-  open: false,
+  show: false,
   handleClose: () => {},
 };
 
 Modal.propTypes = {
   width: PropTypes.string,
-  open: PropTypes.bool,
+  show: PropTypes.bool,
   children: PropTypes.any,
   handleClose: PropTypes.func,
 };

@@ -1,7 +1,8 @@
 import { SET_MODAL } from 'ducks/types';
 
 const modalsState = {
-  skydax_error: false,
+  api_error: false,
+  user_settings: false,
 };
 export const modalsReducer = (state = modalsState, action) => {
   switch (action.type) {

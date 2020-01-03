@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { Navigation } from 'components/navigation/Navigation';
 import { Loading } from 'components/loading/Loading';
+import { Modals } from 'layout/modals/Modals';
 import classNames from 'classnames';
 import cn from './Layouts.module.scss';
 class ConnectedPrivateLayout extends PureComponent {
@@ -21,6 +22,7 @@ class ConnectedPrivateLayout extends PureComponent {
         <div className={cn.privateContent}>{children}</div>
         <p className={cn.version}>v {process.env.REACT_APP_VERSION}</p>
         {loading && <Loading variant="dark" />}
+        <Modals skydax_private />
       </div>
     );
   }
@@ -30,6 +32,4 @@ const mapStateToProps = state => ({
   loading: state.settings.loading,
 });
 
-export const PrivateLayout = withRouter(
-  connect(mapStateToProps)(ConnectedPrivateLayout),
-);
+export const PrivateLayout = withRouter(connect(mapStateToProps)(ConnectedPrivateLayout));

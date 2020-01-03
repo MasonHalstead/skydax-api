@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { logoutUser as logoutUserAction } from 'ducks/actions';
+import { logoutUser as logoutUserAction, setModal as setModalAction } from 'ducks/actions';
 import { Tooltip } from 'components/tooltip/Tooltip';
+import { getData } from 'utils/axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import cn from './Navigation.module.scss';
@@ -12,10 +13,24 @@ const { PUBLIC_URL } = process.env;
 export class ConnectedNavigation extends React.PureComponent {
   static propTypes = {
     logoutUser: PropTypes.func,
+    setModal: PropTypes.func,
   };
 
   state = {
     status: 1,
+  };
+
+  componentDidMount() {
+    this.handleStatus();
+  }
+
+  handleStatus = async () => {
+    try {
+      await getData('/auth/bitmex');
+      this.setState({ status: 3 });
+    } catch {
+      this.setState({ status: 2 });
+    }
   };
 
   handleLogout = () => {
@@ -23,15 +38,16 @@ export class ConnectedNavigation extends React.PureComponent {
     logoutUser();
   };
 
+  handleModals = modal => {
+    const { setModal } = this.props;
+    setModal(modal);
+  };
+
   render() {
     const { status } = this.state;
     return (
       <div className={cn.navigation}>
-        <img
-          className={cn.logo}
-          src={`${PUBLIC_URL}/skydax-banner.png`}
-          alt="Skydax Logo"
-        />
+        <img className={cn.logo} src={`${PUBLIC_URL}/skydax-banner.png`} alt="Skydax Logo" />
         <Link className={cn.link} to="/docs">
           Docs
         </Link>
@@ -45,17 +61,17 @@ export class ConnectedNavigation extends React.PureComponent {
           Strategies
         </Link>
         <div className={cn.flex} />
-        <div className={cn.actions}>
+        <div className={cn.actions} onClick={() => this.handleModals({ user_settings: true })}>
           <FontAwesomeIcon icon={['fas', 'cog']} />
-          <Tooltip title="Settings" top={56} />
+          <Tooltip title="Settings" top={50} />
         </div>
         <div className={cn.actions}>
           <FontAwesomeIcon icon={['fas', 'wallet']} />
-          <Tooltip title="Wallet" top={56} />
+          <Tooltip title="Wallet" top={50} />
         </div>
         <div className={cn.actions} onClick={this.handleLogout}>
           <FontAwesomeIcon icon={['fas', 'sign-out-alt']} />
-          <Tooltip title="Logout" top={56} />
+          <Tooltip title="Logout" top={50} />
         </div>
         <div className={cn.status}>
           <span
@@ -65,7 +81,7 @@ export class ConnectedNavigation extends React.PureComponent {
               { [cn.connected]: status === 3 },
             )}
           ></span>
-          <Tooltip title="Bitmex Connection" top={56} />
+          <Tooltip title="Bitmex Connection" top={50} />
         </div>
       </div>
     );
@@ -78,9 +94,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logoutUser: logoutUserAction,
+  setModal: setModalAction,
 };
 
-export const Navigation = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ConnectedNavigation);
+export const Navigation = connect(mapStateToProps, mapDispatchToProps)(ConnectedNavigation);

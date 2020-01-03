@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { selectBitmexCandles, selectBitmexEquity } from 'ducks/selectors';
 import { handleChartScales } from 'utils/helpers';
 import { Line } from 'react-chartjs-2';
+import classNames from 'classnames';
 import cn from './StrategiesPage.module.scss';
 
 class ConnectedStrategyEquityBlock extends PureComponent {
@@ -16,6 +17,7 @@ class ConnectedStrategyEquityBlock extends PureComponent {
 
   state = {
     chart: 1,
+    interval: 'm1',
   };
 
   handleChartToggle = () => {
@@ -24,22 +26,37 @@ class ConnectedStrategyEquityBlock extends PureComponent {
   };
 
   render() {
-    const { chart } = this.state;
+    const { chart, interval } = this.state;
     const { candles, equity, candle } = this.props;
     const { close, volume } = candle;
     const scale = handleChartScales(candles, equity);
     return (
       <div className={cn.panelRight}>
         <div className={cn.header}>
-          <p
-            className={cn.exchange}
-            onClick={this.handleChartToggle}
-            role="presentation"
-          >
+          <p className={cn.exchange} onClick={this.handleChartToggle} role="presentation">
             <span className={cn.spacer}>BitMEX</span>{' '}
-            <FontAwesomeIcon
-              icon={chart === 1 ? 'dollar-sign' : 'percentage'}
-            />
+            <FontAwesomeIcon icon={chart === 1 ? 'dollar-sign' : 'percentage'} />
+          </p>
+          <p
+            className={classNames(cn.interval, {
+              [cn.active]: interval === 'm1',
+            })}
+          >
+            1M
+          </p>
+          <p
+            className={classNames(cn.interval, {
+              [cn.active]: interval === 'h1',
+            })}
+          >
+            1H
+          </p>
+          <p
+            className={classNames(cn.interval, {
+              [cn.active]: interval === 'd1',
+            })}
+          >
+            1D
           </p>
           <div className={cn.flex} />
           <p className={cn.pair}>XBTUSD</p>
@@ -97,8 +114,7 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   xPadding: 20,
                   callbacks: {
                     label(tooltipItem, data) {
-                      let label =
-                        data.datasets[tooltipItem.datasetIndex].label || '';
+                      let label = data.datasets[tooltipItem.datasetIndex].label || '';
                       if (label) {
                         label += `: $${tooltipItem.yLabel}`;
                       }
@@ -198,8 +214,7 @@ class ConnectedStrategyEquityBlock extends PureComponent {
                   xPadding: 20,
                   callbacks: {
                     label(tooltipItem, data) {
-                      let label =
-                        data.datasets[tooltipItem.datasetIndex].label || '';
+                      let label = data.datasets[tooltipItem.datasetIndex].label || '';
                       if (label) {
                         label += `: ${tooltipItem.yLabel}%`;
                       }
@@ -245,7 +260,4 @@ const mapStateToProps = state => ({
   equity: selectBitmexEquity(state),
 });
 
-export const StrategyEquityBlock = connect(
-  mapStateToProps,
-  null,
-)(ConnectedStrategyEquityBlock);
+export const StrategyEquityBlock = connect(mapStateToProps, null)(ConnectedStrategyEquityBlock);
