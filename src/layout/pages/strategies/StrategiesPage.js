@@ -31,6 +31,7 @@ export class StrategiesPage extends Component {
   };
 
   state = {
+    interval: 'm1',
     headers: [
       {
         title: 'Pair',
@@ -100,11 +101,17 @@ export class StrategiesPage extends Component {
     this.handleInitialData();
   };
 
+  handleInterval = async interval => {
+    await this.setState({ interval });
+    this.handleInitialData();
+  };
+
   handleInitialData = async () => {
     const { setLoading, getStrategiesConfig, handleApiError } = this.props;
+    const { interval } = this.state;
     setLoading(true);
     try {
-      await getStrategiesConfig();
+      await getStrategiesConfig({ interval });
     } catch (err) {
       handleApiError(err);
     }
@@ -112,13 +119,13 @@ export class StrategiesPage extends Component {
   };
 
   render() {
-    const { headers } = this.state;
+    const { headers, interval } = this.state;
     const { strategies } = this.props;
     return (
       <div className={cn.page}>
         <div className={cn.strategyBlock}>
           <StrategyAccountBlock />
-          <StrategyEquityBlock />
+          <StrategyEquityBlock handleInterval={this.handleInterval} interval={interval} />
         </div>
         <div className={cn.strategyTable}>
           <Table

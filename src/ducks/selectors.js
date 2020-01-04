@@ -12,9 +12,9 @@ export function selectBitmexCandles(state) {
   }
   return [];
 }
-export function selectBitmexEquity(state) {
-  if (state.charts && state.charts.bitmex_equity) {
-    return normalizeEquity(state.charts.bitmex_equity);
+export function selectEquity(state) {
+  if (state.charts && state.charts.equity) {
+    return normalizeEquity(state.charts.equity);
   }
   return [];
 }

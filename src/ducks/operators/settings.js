@@ -13,7 +13,7 @@ export const handleApiError = (err, payload = 'empty') => async (dispatch, getSt
 
   if ((err || false).response || (err || false).message) {
     error_message = JSON.stringify(err.response) || JSON.stringify(err.message);
-    if (err.response.status === 400) {
+    if ((err || false).response && err.response.status === 400) {
       await dispatch(setModal({ api_error: false }));
       return dispatch(logoutUser());
     }

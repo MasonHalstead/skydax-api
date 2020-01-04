@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { selectBitmexCandles, selectBitmexEquity } from 'ducks/selectors';
+import { selectBitmexCandles, selectEquity } from 'ducks/selectors';
 import { handleChartScales } from 'utils/helpers';
 import { Line } from 'react-chartjs-2';
 import classNames from 'classnames';
@@ -13,11 +13,12 @@ class ConnectedStrategyEquityBlock extends PureComponent {
     candles: PropTypes.object,
     equity: PropTypes.object,
     candle: PropTypes.object,
+    interval: PropTypes.string,
+    handleInterval: PropTypes.func,
   };
 
   state = {
     chart: 1,
-    interval: 'm1',
   };
 
   handleChartToggle = () => {
@@ -26,8 +27,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
   };
 
   render() {
-    const { chart, interval } = this.state;
-    const { candles, equity, candle } = this.props;
+    const { chart } = this.state;
+    const { candles, equity, candle, interval, handleInterval } = this.props;
     const { close, volume } = candle;
     const scale = handleChartScales(candles, equity);
     return (
@@ -38,6 +39,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
             <FontAwesomeIcon icon={chart === 1 ? 'dollar-sign' : 'percentage'} />
           </p>
           <p
+            role="presentation"
+            onClick={() => handleInterval('m1')}
             className={classNames(cn.interval, {
               [cn.active]: interval === 'm1',
             })}
@@ -45,6 +48,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
             1M
           </p>
           <p
+            role="presentation"
+            onClick={() => handleInterval('h1')}
             className={classNames(cn.interval, {
               [cn.active]: interval === 'h1',
             })}
@@ -52,6 +57,8 @@ class ConnectedStrategyEquityBlock extends PureComponent {
             1H
           </p>
           <p
+            role="presentation"
+            onClick={() => handleInterval('d1')}
             className={classNames(cn.interval, {
               [cn.active]: interval === 'd1',
             })}
@@ -257,7 +264,7 @@ const mapStateToProps = state => ({
   user: state.user,
   candle: state.candle,
   candles: selectBitmexCandles(state),
-  equity: selectBitmexEquity(state),
+  equity: selectEquity(state),
 });
 
 export const StrategyEquityBlock = connect(mapStateToProps, null)(ConnectedStrategyEquityBlock);

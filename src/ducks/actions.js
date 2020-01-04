@@ -82,12 +82,12 @@ export const setBitmexCandles = candles => ({
 export const clearBitmexCandles = () => ({
   type: constants.CLEAR_BITMEX_CANDLES,
 });
-export const setBitmexEquity = equity => ({
-  type: constants.SET_BITMEX_EQUITY,
+export const setEquity = equity => ({
+  type: constants.SET_EQUITY,
   payload: equity,
 });
-export const clearBitmexEquity = () => ({
-  type: constants.CLEAR_BITMEX_EQUITY,
+export const clearEquity = () => ({
+  type: constants.CLEAR_EQUITY,
 });
 export const setKrakenCandles = candles => ({
   type: constants.SET_KRAKEN_CANDLES,
